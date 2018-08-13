@@ -19,7 +19,6 @@ typedef std::basic_string<TCHAR> T_STR;
 
 //dll 파일을 추가하는 코드
 #pragma comment(lib, "winmm.lib")
-#pragma comment(lib, "basic.lib")
 
 //전역 변수를 외부 변수로 등록
 extern HWND g_hWnd; //현재 선택된 윈도우 핸들값
