@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nC
 	//프로그램 핸들을 전역변수로 대입
 	g_hInst = hInst;
 
-	wndC GameWnd;
+	wndC GameWnd(L"GameWindow");
 
 	GameWnd.runWindow();
 

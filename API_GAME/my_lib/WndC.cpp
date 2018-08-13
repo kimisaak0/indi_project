@@ -1,13 +1,16 @@
 #include "wndC.h"
 
-wndC::wndC(LPCWSTR LWndName)
+WndC::WndC(LPCWSTR LWndName)
 {
+	bool debug = registWnd(LWndName);
+
 	//윈도우 등록 및 생성에 실패하면 종료
-	 assert(registWnd(LWndName) == false);   
+	//assert() 값이 true면 넘어가고, false면 에러를 띄운다.
+	 assert(debug); 
 }
 
 //메시지 처리 함수
-LRESULT CALLBACK wndC::MsgProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndC::MsgProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (iMsg) {
 		case WM_CREATE: {
@@ -23,7 +26,7 @@ LRESULT CALLBACK wndC::MsgProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lPara
 }
 
 //윈도우 등록 및 생성
-bool wndC::registWnd(LPCWSTR LWndName)
+bool WndC::registWnd(LPCWSTR LWndName)
 {
 	ZeroMemory(&m_wndC, sizeof(WNDCLASSEX));
 
@@ -55,7 +58,7 @@ bool wndC::registWnd(LPCWSTR LWndName)
 }
 
 //윈도우 돌리기
-bool wndC::runWindow()
+bool WndC::runWindow()
 {
 	MSG msg;
 	ZeroMemory(&msg, sizeof(MSG));
@@ -64,58 +67,40 @@ bool wndC::runWindow()
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+
 			if (msg.message == WM_QUIT) {
 				break;
 			}
 		}
 		else {
-
+			gameRun();
 		}
 	}
 
-	return true;
-}
-
-
-bool Init()
-{
-
-}
-
-bool Frame()
-{
-
-}
-
-bool Render()
-{
-
-}
-
-bool Release()
-{
-
+	return gameRelease();
 }
 
 
 //핸들을 반환
-HWND wndC::getHandle()
+HWND WndC::getHandle()
 {
 	return m_hWnd;
 }
 
-RECT getClient()
+RECT WndC::getClient()
 {
-
+	GetWindowRect(m_hWnd, &m_rtClient);
+	return m_rtClient;
 }
 
-RECT getWindow()
+RECT WndC::getWindow()
 {
-
+	GetWindowRect(m_hWnd, &m_rtWindow);
+	return m_rtWindow;
 }
 
 
-wndC::~wndC()
+WndC::~WndC()
 {
 
 }

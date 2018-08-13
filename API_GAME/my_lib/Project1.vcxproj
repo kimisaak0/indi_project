@@ -160,10 +160,14 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CoreC.h" />
     <ClInclude Include="header.h" />
+    <ClInclude Include="TimerC.h" />
     <ClInclude Include="WndC.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CoreC.cpp" />
+    <ClCompile Include="TimerC.cpp" />
     <ClCompile Include="WndC.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

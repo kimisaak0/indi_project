@@ -21,9 +21,21 @@
     <ClInclude Include="WndC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="TimerC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WndC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
