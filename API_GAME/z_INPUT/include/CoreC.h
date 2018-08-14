@@ -8,8 +8,6 @@ private:
 	HDC     m_hOnScreenDC;
 	HDC     m_hOffScreenDC;
 
-private:
-	TimerC  m_Timer;
 
 public:
 	bool    gameInit() override;

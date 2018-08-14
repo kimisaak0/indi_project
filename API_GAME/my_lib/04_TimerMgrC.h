@@ -1,11 +1,11 @@
 #pragma once
-#include "header.h"
+#include "01_header.h"
 
 // 1) 1프레임의 경과 시간 : m_fSecFrame
 // 2) 1초의 프레임 카운터 : m_dwFrameCount
 // 3) 게임 실행 누적 시간 : m_dGameTimer;
 
-class TimerC
+class TimerMgrC : public SingleMgr<TimerMgrC>
 {
 private:
 	DWORD   m_dwFrameCounter; // Frame 누적
@@ -17,9 +17,6 @@ private:
 
 	TCHAR   m_csBuffer[256];  // 문자열 버퍼 (타이머를 화면에 표시하기 위함)
 
-public:
-	double   getSPF();
-	TCHAR*   outTimer();
 
 public:
 	bool    Init();      // 초기화
@@ -27,8 +24,16 @@ public:
 	bool    Render();	 // 드로우
 	bool    Release();	 // 소멸, 삭제
 
+ //public:
+ //	double   getSPF();
+ //	TCHAR*   outTimer();
+
+protected:
+	TimerMgrC();
+
 public:
-	TimerC();
-	virtual ~TimerC();
+	virtual ~TimerMgrC();
 
 };
+
+#define I_Timer TimerC::GetInstance()

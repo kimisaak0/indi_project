@@ -160,15 +160,21 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CoreC.h" />
-    <ClInclude Include="header.h" />
-    <ClInclude Include="TimerC.h" />
-    <ClInclude Include="WndC.h" />
+    <ClInclude Include="03_CoreC.h" />
+    <ClInclude Include="01_header.h" />
+    <ClInclude Include="05_InputMgrC.h" />
+    <ClInclude Include="04_TimerMgrC.h" />
+    <ClInclude Include="02_WndC.h" />
+    <ClInclude Include="06_BmpC.h" />
+    <ClInclude Include="07_BmpMgrC.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CoreC.cpp" />
-    <ClCompile Include="TimerC.cpp" />
-    <ClCompile Include="WndC.cpp" />
+    <ClCompile Include="03_CoreC.cpp" />
+    <ClCompile Include="05_InputMgrC.cpp" />
+    <ClCompile Include="04_TimerMgrC.cpp" />
+    <ClCompile Include="02_WndC.cpp" />
+    <ClCompile Include="06_BmpC.cpp" />
+    <ClCompile Include="07_BmpMgrC.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

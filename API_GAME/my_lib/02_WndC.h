@@ -1,6 +1,11 @@
 #pragma once
 
-#include "header.h"
+//--------------------------------------------------------------------------------//
+//-윈도우 생성과 등록 및 생성된 윈도우의 크기 정보에 대한 내용만 가지고 있습니다.-//
+//--------------------------------------------------------------------------------//
+
+#include "01_header.h"
+
 
 class WndC
 {
@@ -28,11 +33,13 @@ public:
 	virtual bool gameRender() = 0;
 	virtual bool gameRelease() = 0;
 
-public:
-	HWND getHandle();                   //윈도우 핸들 반환
-	RECT getClient();
-	RECT getWindow();
 
+	//일단 전부 전역으로 뻈던건 다 빼놓고 넣을 수 있을만한 것들을 넣어보자.
+//public:
+//	HWND getHandle();                   //윈도우 핸들 반환
+//	RECT getClient();
+//	RECT getWindow();
+//
 public:
 	WndC(LPCWSTR LWndName);
 	virtual ~WndC();

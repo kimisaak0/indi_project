@@ -1,12 +1,25 @@
-#include "wndC.h"
+#include "02_WndC.h"
+
+//생성자에서 대입
+HWND   g_hWnd;
+RECT   g_rtWindow;
+RECT   g_rtClient;
+
 
 WndC::WndC(LPCWSTR LWndName)
 {
-	bool debug = registWnd(LWndName);
-
 	//윈도우 등록 및 생성에 실패하면 종료
 	//assert() 값이 true면 넘어가고, false면 에러를 띄운다.
-	 assert(debug); 
+	bool debug = registWnd(LWndName);
+	assert(debug); 
+
+	GetWindowRect(m_hWnd, &m_rtWindow);
+	GetWindowRect(m_hWnd, &m_rtClient);
+
+	g_hWnd = m_hWnd;
+	g_rtWindow = m_rtWindow;
+	g_rtClient = m_rtClient;
+
 }
 
 //메시지 처리 함수
@@ -34,6 +47,7 @@ bool WndC::registWnd(LPCWSTR LWndName)
 	m_wndC.hInstance = g_hInst;
 	m_wndC.lpfnWndProc = MsgProc;
 	m_wndC.lpszClassName = LWndName;
+	m_wndC.hbrBackground = (HBRUSH)GetStockObject(GRAY_BRUSH);
 
 	if (!RegisterClassEx(&m_wndC)) {
 		return false;
@@ -80,24 +94,24 @@ bool WndC::runWindow()
 	return gameRelease();
 }
 
-
-//핸들을 반환
-HWND WndC::getHandle()
-{
-	return m_hWnd;
-}
-
-RECT WndC::getClient()
-{
-	GetWindowRect(m_hWnd, &m_rtClient);
-	return m_rtClient;
-}
-
-RECT WndC::getWindow()
-{
-	GetWindowRect(m_hWnd, &m_rtWindow);
-	return m_rtWindow;
-}
+//
+////핸들을 반환
+//HWND WndC::getHandle()
+//{
+//	return m_hWnd;
+//}
+//
+//RECT WndC::getClient()
+//{
+//	GetWindowRect(m_hWnd, &m_rtClient);
+//	return m_rtClient;
+//}
+//
+//RECT WndC::getWindow()
+//{
+//	GetWindowRect(m_hWnd, &m_rtWindow);
+//	return m_rtWindow;
+//}
 
 
 WndC::~WndC()
