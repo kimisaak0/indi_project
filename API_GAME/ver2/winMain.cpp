@@ -1,8 +1,13 @@
 #pragma comment(lib, "core_lib.lib")  //이 라이브러리를 추가.
+#include "CoreC.h"
 
 
-#include "wndC.h"
-
+class GameC : public CoreC
+{
+public:
+	GameC(LPCWSTR LWndName) : CoreC(LWndName) {}
+	virtual ~GameC() {}
+};
 
 HINSTANCE g_hInst;
 
@@ -14,7 +19,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nC
 	//프로그램 핸들을 전역변수로 대입
 	g_hInst = hInst;
 
-	wndC GameWnd(L"GameWindow");
+	GameC GameWnd(L"GameWindow");
 
 	GameWnd.runWindow();
 

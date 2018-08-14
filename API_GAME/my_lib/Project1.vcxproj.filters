@@ -15,27 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header.h">
+    <ClInclude Include="01_header.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="WndC.h">
+    <ClInclude Include="02_WndC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TimerC.h">
+    <ClInclude Include="03_CoreC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CoreC.h">
+    <ClInclude Include="05_InputC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="04_TimerC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="06_BmpC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WndC.cpp">
+    <ClCompile Include="03_CoreC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TimerC.cpp">
+    <ClCompile Include="02_WndC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CoreC.cpp">
+    <ClCompile Include="05_InputC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="04_TimerC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="06_BmpC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
