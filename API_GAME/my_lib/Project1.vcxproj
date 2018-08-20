@@ -167,6 +167,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClInclude Include="02_WndC.h" />
     <ClInclude Include="06_BmpC.h" />
     <ClInclude Include="07_BmpMgrC.h" />
+    <ClInclude Include="08_ObjC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp" />
@@ -175,6 +176,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClCompile Include="02_WndC.cpp" />
     <ClCompile Include="06_BmpC.cpp" />
     <ClCompile Include="07_BmpMgrC.cpp" />
+    <ClCompile Include="08_ObjC.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

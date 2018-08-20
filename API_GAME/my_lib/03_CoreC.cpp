@@ -11,8 +11,8 @@ CoreC::CoreC(LPCWSTR LWndName) : WndC(LWndName)
 	m_hOffScreenDC = CreateCompatibleDC(m_hOnScreenDC);
 
 
-	//g_hOnScreenDC = m_hOnScreenDC;
-	//g_hOffScreenDC = m_hOffScreenDC;
+	g_hOnScreenDC = m_hOnScreenDC;
+	g_hOffScreenDC = m_hOffScreenDC;
 }
 
 
@@ -41,22 +41,42 @@ bool CoreC::gameFrame()
 
 bool CoreC::GamePreRender()
 {
+	PatBlt(m_hOffScreenDC, 0, 0, m_rtClient.right, m_rtClient.bottom, PATCOPY);
 	return true;
 }
 
 bool CoreC::gameRender()
 {
+	GamePreRender();
 
 	I_Timer.Render();
-
 	I_Input.Render();
 
+	HBITMAP old;
+
+	BmpC* testBmp = new BmpC;
+
+	testBmp->Load(L"../z_INPUT/data/50x50/topVeiw_Water_1.bmp");
+
+	//I_Bmp.addBmp(L"test", testBmp);
+	//I_Bmp.getBmp(L"test");
+
+	BitBlt(g_hOffScreenDC,
+		100, 100,
+		50, 50,
+		testBmp->m_hMemDC,
+		0, 0,
+		SRCCOPY
+	);
+
+	GamePostRender();
 
 	return true;
 }
 
 bool CoreC::GamePostRender()
 {
+	BitBlt(m_hOnScreenDC, 0, 0, m_rtClient.right, m_rtClient.bottom, m_hOffScreenDC, 0, 0, SRCCOPY);
 	return true;
 }
 

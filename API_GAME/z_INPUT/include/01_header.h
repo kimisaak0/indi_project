@@ -6,11 +6,23 @@
 #include <Windows.h>
 #include <tchar.h>
 
+#include <iostream>
+
 #include <vector>
 using std::vector;
 
 #include <string>
 using std::string;
+
+#include <map>
+using std::map;
+
+#include <list>
+using std::list;
+
+typedef std::basic_string<char> C_STR;
+typedef std::basic_string<wchar_t> W_STR;
+typedef std::basic_string<TCHAR> T_STR;
 
 //--------외부 변수 정의 영역----------//
 

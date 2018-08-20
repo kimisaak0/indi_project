@@ -1,5 +1,10 @@
 #include "05_InputC.h"
 
+InputC::InputC()
+{
+
+}
+
 DWORD   InputC::KeyCheck(DWORD dwKey)
 {
 	//typedef short SHORT;
@@ -119,4 +124,9 @@ void    InputC::MsgEvent(MSG msg)
 			m_dwMouseState[2] = KEY_UP;
 		} break;
 	}
+}
+
+InputC::~InputC()
+{
+
 }

@@ -8,7 +8,7 @@
 class InputC : public SingleMgr<InputC>
 {
 	//부모 클래스를 Friend지정
-	//friend class SingleMgr<inputClass>;
+	friend class SingleMgr<InputC>;
 
 private:
 	DWORD   m_dwKeyState[256];        //키보드의 버튼 각각에 대한 상태를 저장하기 위한 버퍼
@@ -31,6 +31,13 @@ public:
 public:
 	DWORD  Key(DWORD dwKey);   // 인자로 넘어온 키의 상태를 반환하는 함수.
 	void   MsgEvent(MSG msg);  // 마우스 버튼 입력에 따라 버퍼에 상태를 저장하는 함수
+
+protected:
+	InputC();
+
+public:
+	~InputC();
+
 };
 
 #define I_Input InputC::GetInstance()

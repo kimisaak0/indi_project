@@ -97,3 +97,4 @@ int        bmpMgrClass::Load(T_STR szLoadFile)
 bmpMgrClass::~bmpMgrClass()
 {
 }
+
