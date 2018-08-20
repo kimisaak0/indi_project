@@ -33,6 +33,9 @@
     <ClInclude Include="06_BmpC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="07_BmpMgrC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp">
@@ -48,6 +51,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="06_BmpC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="07_BmpMgrC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

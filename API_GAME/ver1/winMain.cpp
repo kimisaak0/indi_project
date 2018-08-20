@@ -14,7 +14,7 @@ public:
 	bool Init()
 	{
 		m_BackGround.Load(L"../z_INPUT/data/50x50/watar_tileset.bmp");
-		m_BackGround.Set(0, 0, 204, 0, 50, 50);
+		m_BackGround.Set(0, 0, 0, 0, 50, 50);
 
 		m_Hero.Load(L"../z_INPUT/data/50x50/Shipedits.bmp");
 		m_Hero.Set(300, 300, 0, 0, 32, 30);

@@ -166,6 +166,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClInclude Include="04_TimerC.h" />
     <ClInclude Include="02_WndC.h" />
     <ClInclude Include="06_BmpC.h" />
+    <ClInclude Include="07_BmpMgrC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp" />
@@ -173,6 +174,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClCompile Include="04_TimerC.cpp" />
     <ClCompile Include="02_WndC.cpp" />
     <ClCompile Include="06_BmpC.cpp" />
+    <ClCompile Include="07_BmpMgrC.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
