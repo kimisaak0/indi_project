@@ -27,6 +27,18 @@ bool CoreC::gameInit()
 	I_Timer.Init();
 	I_Input.Init();
 
+
+
+	//nowBmp.Load(L"../z_INPUT/data/50x50/topVeiw_Water_1.bmp");
+
+	//if (nowBmp.m_hBitmap == NULL) {
+	//	MessageBox(g_hWnd, L"이미지 로드 실패", L"이미지 로드 실패", MB_OK);
+	//	return false;
+	//}
+
+
+
+
 	return true;
 }
 
@@ -52,22 +64,18 @@ bool CoreC::gameRender()
 	I_Timer.Render();
 	I_Input.Render();
 
-	HBITMAP old;
+	nowBmp.m_hBitmap = (HBITMAP)LoadImage(g_hInst, L"../z_INPUT/data/50x50/topVeiw_Water_1.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
-	BmpC* testBmp = new BmpC;
+	if (nowBmp.m_hBitmap == NULL) {
+		MessageBox(g_hWnd, L"이미지 로드 실패", L"이미지 로드 실패", MB_OK);
+		return false;
+	}
 
-	testBmp->Load(L"../z_INPUT/data/50x50/topVeiw_Water_1.bmp");
+	I_Bmp.addBmp(L"1", &nowBmp);
 
-	//I_Bmp.addBmp(L"test", testBmp);
-	//I_Bmp.getBmp(L"test");
+	HBITMAP oldBmp = (HBITMAP)SelectObject(g_hOffScreenDC, I_Bmp.getBmp(L"1")->m_hBitmap);
 
-	BitBlt(g_hOffScreenDC,
-		100, 100,
-		50, 50,
-		testBmp->m_hMemDC,
-		0, 0,
-		SRCCOPY
-	);
+	BitBlt(g_hOnScreenDC, 20, 20, 50, 50, g_hOffScreenDC, 0, 0, SRCCOPY);
 
 	GamePostRender();
 
@@ -76,7 +84,7 @@ bool CoreC::gameRender()
 
 bool CoreC::GamePostRender()
 {
-	BitBlt(m_hOnScreenDC, 0, 0, m_rtClient.right, m_rtClient.bottom, m_hOffScreenDC, 0, 0, SRCCOPY);
+	BitBlt(m_hOnScreenDC, 20, 20, m_rtClient.right, m_rtClient.bottom, m_hOffScreenDC, 0, 0, SRCCOPY);
 	return true;
 }
 

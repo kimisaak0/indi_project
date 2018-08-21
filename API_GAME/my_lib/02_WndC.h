@@ -24,7 +24,7 @@ private:
 	bool registWnd(LPCWSTR LWndName);   //윈도우 등록 ... 생성자에서 호출함.
 
 public:
-	bool runWindow();                   //윈도우 돌리기
+	virtual bool runWindow();                   //윈도우 돌리기
 
 public:
 	virtual bool gameInit() = 0;

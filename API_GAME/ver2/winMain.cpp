@@ -1,9 +1,10 @@
 #pragma comment(lib, "core_lib.lib")  //이 라이브러리를 추가.
-#include "CoreC.h"
+#include "03_CoreC.h"
 
 
 class GameC : public CoreC
 {
+
 public:
 	GameC(LPCWSTR LWndName) : CoreC(LWndName) {}
 	virtual ~GameC() {}

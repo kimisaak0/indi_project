@@ -12,10 +12,10 @@
 
 class CoreC : public WndC
 {
-	//bool sw;
-
 
 protected:
+	BmpC nowBmp;
+
 	HDC     m_hOnScreenDC;
 	HDC     m_hOffScreenDC;
 

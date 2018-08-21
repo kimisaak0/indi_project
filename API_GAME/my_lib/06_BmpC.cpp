@@ -18,7 +18,11 @@ bool    BmpC::Load(T_STR szLoadFile)
 		LR_DEFAULTSIZE | LR_LOADFROMFILE
 	);
 
-	if (m_hBitmap != NULL) {
+	if (m_hBitmap == NULL) {
+		MessageBox(g_hWnd, L"이미지 로드 실패", L"이미지 로드 실패", MB_OK);
+		return false;
+	}
+	else {
 		GetObject(m_hBitmap, sizeof(BITMAP), &m_bmpInfo);
 		m_hMemDC = CreateCompatibleDC(hdc);
 		SelectObject(m_hMemDC, m_hBitmap);
@@ -29,6 +33,7 @@ bool    BmpC::Load(T_STR szLoadFile)
 
 	ReleaseDC(g_hWnd, hdc);
 	return false;
+
 }
 
 bool    BmpC::Init()
@@ -43,6 +48,7 @@ bool    BmpC::Frame()
 
 bool    BmpC::Render()
 {
+
 	return true;
 }
 

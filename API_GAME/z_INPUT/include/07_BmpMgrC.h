@@ -16,6 +16,7 @@ private:
 	//int            m_iIndex;
 
 	list<BmpNameTag> m_BmpList;
+	list<HBITMAP>    m_ReleaseList;
 
 public:
 
