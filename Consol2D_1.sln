@@ -14,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{2AB284F2-1F94-497C-8811-DA07FDDD2D3A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ver1", "API_GAME\ver1\ver1.vcxproj", "{19501887-50AA-47B4-8389-A902CF62878C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C14177BA-E85C-4DB6-B739-5E0F290C83B6} = {C14177BA-E85C-4DB6-B739-5E0F290C83B6}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "basic", "API_GAME\basic\basic.vcxproj", "{C14177BA-E85C-4DB6-B739-5E0F290C83B6}"
 EndProject
@@ -107,7 +110,7 @@ Global
 		{60BC7E44-3EE8-4F35-ACA6-6FDCA2F51BAE} = {2AB284F2-1F94-497C-8811-DA07FDDD2D3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0434BA05-3216-4C2B-8BC8-C3A202C386D0}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {0434BA05-3216-4C2B-8BC8-C3A202C386D0}
 	EndGlobalSection
 EndGlobal

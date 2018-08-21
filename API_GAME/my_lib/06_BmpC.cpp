@@ -25,7 +25,7 @@ bool    BmpC::Load(T_STR szLoadFile)
 	else {
 		GetObject(m_hBitmap, sizeof(BITMAP), &m_bmpInfo);
 		m_hMemDC = CreateCompatibleDC(hdc);
-		SelectObject(m_hMemDC, m_hBitmap);
+		m_hOldBmp = (HBITMAP)SelectObject(m_hMemDC, m_hBitmap);
 		m_szName = szLoadFile;
 		ReleaseDC(g_hWnd, hdc);
 		return true;
@@ -48,7 +48,6 @@ bool    BmpC::Frame()
 
 bool    BmpC::Render()
 {
-
 	return true;
 }
 

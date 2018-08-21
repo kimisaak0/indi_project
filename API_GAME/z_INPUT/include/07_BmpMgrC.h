@@ -16,14 +16,15 @@ private:
 	//int            m_iIndex;
 
 	list<BmpNameTag> m_BmpList;
-	list<HBITMAP>    m_ReleaseList;
+	//list<HBITMAP>    m_ReleaseList;
+
+private:
+	BmpC*    addBmp(T_STR szName);
+	BmpC*    getBmp(T_STR szName);
+	//BmpC*    getBmp(int iKey);
 
 public:
-
-	void     addBmp(T_STR szName, BmpC* pData);
-	
-	//BmpC*    getBmp(int iKey);
-	BmpC*    getBmp(T_STR szName);
+	BmpC*     loadBmp(T_STR szName);
 
 protected:
 	BmpMgrC();

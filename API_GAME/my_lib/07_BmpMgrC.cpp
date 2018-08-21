@@ -6,14 +6,20 @@ BmpMgrC::BmpMgrC()
 }
 
 
-void     BmpMgrC::addBmp(T_STR szName, BmpC* pData)
+BmpC*     BmpMgrC::addBmp(T_STR szName)
 {
+
+	BmpC *pData = new BmpC;
+	pData->Load(szName);
+
 	BmpNameTag Tag;
 	//Tag.iBmpKey = iKey;
 	Tag.szBmpName = szName;
 	Tag.pBmpData = pData;
 
 	m_BmpList.push_back(Tag);
+
+	return pData;
 }
 
 //BmpC*    BmpMgrC::getBmp(int iKey)
@@ -41,6 +47,18 @@ BmpC*    BmpMgrC::getBmp(T_STR szName)
 	}
 	return nullptr;
 }
+
+BmpC*     BmpMgrC::loadBmp(T_STR szName)
+{
+	BmpC* newBmp = getBmp(szName);
+
+	if (newBmp == nullptr) {
+		return addBmp(szName);
+	}
+
+	return newBmp;
+}
+
 
 BmpMgrC::~BmpMgrC()
 {
