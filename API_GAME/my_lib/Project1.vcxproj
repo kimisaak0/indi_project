@@ -169,6 +169,12 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClInclude Include="07_BmpMgrC.h" />
     <ClInclude Include="08_ObjC.h" />
     <ClInclude Include="09_1_BgObjC.h" />
+    <ClInclude Include="12_3_MapObjC.h" />
+    <ClInclude Include="10_CollisionC.h" />
+    <ClInclude Include="11_CollisionObjC.h" />
+    <ClInclude Include="09_3_UIObjC.h" />
+    <ClInclude Include="12_1_HeroObjC.h" />
+    <ClInclude Include="12_2_NpcObjC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp" />
@@ -179,6 +185,12 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClCompile Include="07_BmpMgrC.cpp" />
     <ClCompile Include="08_ObjC.cpp" />
     <ClCompile Include="09_1_BgObjC.cpp" />
+    <ClCompile Include="12_3_MapObj.cpp" />
+    <ClCompile Include="09_3_UIObjC.cpp" />
+    <ClCompile Include="10_CollisionC.cpp" />
+    <ClCompile Include="11_CollisionObjC.cpp" />
+    <ClCompile Include="12_1_HeroObjC.cpp" />
+    <ClCompile Include="12_2_NpcObjC.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

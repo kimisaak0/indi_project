@@ -14,12 +14,16 @@ struct dPointC
 
 class ObjC
 {
-public:
-	BmpC*     m_pColorBmp;
-	BmpC*     m_pMaskBmp;
+protected:
+	BmpC*     m_pColorBmp;       //원본 bmp
+	BmpC*     m_pMaskBmp;        //마스크 bmp
 
-	dPointC   m_pos;
-	RECT      m_rtDraw;
+	dPointC   m_ptPosition;      //obj의 중점
+	dPointC   m_ptDrawPostion;   //obj의 left,top.
+
+	RECT      m_rtDraw;          //obj를 그리기 위한 정보
+
+	bool      m_bExist;          //obj 존재 여부
 
 public:
 	//비트맵 이미지 세팅
@@ -27,12 +31,7 @@ public:
 
 
 	//오브젝트 위치 설정
-	virtual void Set(dPointC pos);
 	virtual void Set(double x, double y, DWORD left, DWORD top, DWORD right, DWORD bottom);
-
-
-	virtual bool Draw(short sType, RECT* pRt = nullptr);
-	virtual bool DrawColorKey(DWORD maskColor);
 
 	virtual bool Init();
 	virtual bool Frame();

@@ -4,6 +4,9 @@
 #include "05_InputC.h"
 #include "07_BmpMgrC.h"  // - 6번 포함
 #include "09_1_BgObjC.h" // - 8번 포함
+#include "10_CollisionC.h"
+#include "12_1_HeroObjC.h" // - 11번 포함
+#include "12_2_NpcObjC.h"
 
 //----------------------------------------------------------------//
 //-현재 만든 모든 클래스의 정보를 가지고 있는 핵심 클래스 입니다.-//
@@ -20,7 +23,7 @@ protected:
 	HBITMAP m_hOffBmp;
 	HBRUSH  m_hBrBack;
 
-	BgObjC m_BackGround;
+	bool    m_TimerSw;
 
 public:
 	bool    gameInit() override;
@@ -36,8 +39,8 @@ public:
 public:
 	virtual bool    Init() 
 	{
-		m_BackGround.Load(L"../z_INPUT/data/50x50/watar_tileset.bmp");
-		m_BackGround.Set(0, 0, 0, 0, 50, 50);
+	/*	m_BackGround.Load(L"../z_INPUT/data/50x50/watar_tileset.bmp");
+		m_BackGround.Set(0, 0, 0, 0, 50, 50);*/
 		return true;
 	}      // 초기화
 
@@ -45,17 +48,17 @@ public:
 	virtual bool    Frame() 
 	{
 
-		m_BackGround.Frame(); 
+		//m_BackGround.Frame(); 
 		return true;
 	};	 // 계산
 	virtual bool    Render() { 
 		
-		m_BackGround.Render(); 
+		//m_BackGround.Render(); 
 		return true;
 	};	 // 드로우
 	virtual bool    Release() { 
 		
-		m_BackGround.Release();
+		//m_BackGround.Release();
 		return true;
 	};	 // 소멸, 삭제
 

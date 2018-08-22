@@ -74,6 +74,8 @@ bool WndC::registWnd(LPCWSTR LWndName)
 //윈도우 돌리기
 bool WndC::runWindow()
 {
+	gameInit();
+
 	MSG msg;
 	ZeroMemory(&msg, sizeof(MSG));
 

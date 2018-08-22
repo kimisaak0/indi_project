@@ -42,6 +42,24 @@
     <ClInclude Include="09_1_BgObjC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="09_3_UIObjC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="12_1_HeroObjC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="12_2_NpcObjC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="10_CollisionC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="11_CollisionObjC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="12_3_MapObjC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp">
@@ -66,6 +84,24 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="09_1_BgObjC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="09_3_UIObjC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="12_1_HeroObjC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="12_2_NpcObjC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="11_CollisionObjC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="10_CollisionC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="12_3_MapObj.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

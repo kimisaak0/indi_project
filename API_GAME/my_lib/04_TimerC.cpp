@@ -38,6 +38,7 @@ bool    TimerC::Frame()
 	DWORD dwElapseTick = dwCurrentTick - m_dwBeforeTick;    //이 계산을 하기까지 경과한 시간. (tick단위)
 
 	m_dSecPerFrame = dwElapseTick / 1000.0;                 // dwElapseTick을 초단위로 변환
+	g_dSecPerFrame = m_dSecPerFrame;
 
 	m_dGameTimer += m_dSecPerFrame;                        	//초단위 누적
 
