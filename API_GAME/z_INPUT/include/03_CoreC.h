@@ -6,7 +6,7 @@
 #include "09_1_BgObjC.h" // - 8번 포함
 #include "10_CollisionC.h"
 #include "12_1_HeroObjC.h" // - 11번 포함
-#include "12_2_NpcObjC.h"
+#include "12_2_MobAC.h"
 
 //----------------------------------------------------------------//
 //-현재 만든 모든 클래스의 정보를 가지고 있는 핵심 클래스 입니다.-//

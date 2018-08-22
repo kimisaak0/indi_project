@@ -18,8 +18,8 @@ protected:
 	BmpC*     m_pColorBmp;       //원본 bmp
 	BmpC*     m_pMaskBmp;        //마스크 bmp
 
-	dPointC   m_ptPosition;      //obj의 중점
-	dPointC   m_ptDrawPostion;   //obj의 left,top.
+	dPointC   m_ptPosition;      //obj의 left,top.
+	dPointC   m_ptDrawPosition;   //obj의 중점
 
 	RECT      m_rtDraw;          //obj를 그리기 위한 정보
 

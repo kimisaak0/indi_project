@@ -4,10 +4,11 @@ CollisionObjC::CollisionObjC()
 {
 	ObjC::ObjC();
 
-	m_fDirX = 1.0f;
-	m_fDirY = 1.0f;
+	m_dDirX = 1.0f;
+	m_dDirY = 1.0f;
 
-	m_fSpeed = 100.0f;
+	m_dSpeedX = 0;
+	m_dSpeedY = 0;
 
 	m_bDebugRect = false;
 	m_bExist = false;
@@ -18,13 +19,10 @@ void CollisionObjC::Set(double x, double y, DWORD left, DWORD top, DWORD right, 
 {
 	ObjC::Set(x,y,left, top, right, bottom);
 
-	m_fDirX = (rand() % 2) ? 1.0f : -1.0f;
-	m_fDirY = (rand() % 2) ? 1.0f : -1.0f;
-
-	m_rtCollision.left = m_ptDrawPostion.x;
-	m_rtCollision.top = m_ptDrawPostion.y;
-	m_rtCollision.right = m_rtCollision.left + m_rtDraw.right;
-	m_rtCollision.bottom = m_rtCollision.top + m_rtDraw.bottom;
+	m_rtCollision.left = m_ptDrawPosition.x - m_rtDraw.right / 2;
+	m_rtCollision.top = m_ptDrawPosition.y - m_rtDraw.bottom / 2;
+	m_rtCollision.right = m_ptDrawPosition.x + m_rtDraw.right / 2;
+	m_rtCollision.bottom = m_ptDrawPosition.y + m_rtDraw.bottom / 2;
 
 
 }
@@ -33,13 +31,15 @@ void CollisionObjC::Set(double x, double y, DWORD left, DWORD top, DWORD right, 
 bool CollisionObjC::Frame()
 {
 
-	m_ptDrawPostion.x = m_ptPosition.x - (m_rtDraw.right / 2);
-	m_ptDrawPostion.y = m_ptPosition.y - (m_rtDraw.bottom / 2);
+	m_ptDrawPosition.x = m_ptPosition.x + (m_rtDraw.right / 2);
+	m_ptDrawPosition.y = m_ptPosition.y + (m_rtDraw.bottom / 2);
 
-	m_rtCollision.left = m_ptDrawPostion.x;
-	m_rtCollision.top = m_ptDrawPostion.y;
-	m_rtCollision.right = m_rtCollision.left + m_rtDraw.right;
-	m_rtCollision.bottom = m_rtCollision.top + m_rtDraw.bottom;
+	m_rtCollision.left = m_ptDrawPosition.x - m_rtDraw.right / 2;
+	m_rtCollision.top = m_ptDrawPosition.y - m_rtDraw.bottom / 2;
+	m_rtCollision.right = m_ptDrawPosition.x + m_rtDraw.right / 2;
+	m_rtCollision.bottom = m_ptDrawPosition.y + m_rtDraw.bottom / 2;
+
+
 
 	return true;
 
@@ -63,6 +63,11 @@ bool CollisionObjC::Render()
 
 }
 
+
+RECT    CollisionObjC::getRtCls()
+{
+	return m_rtCollision;
+}
 
 CollisionObjC::~CollisionObjC()
 {

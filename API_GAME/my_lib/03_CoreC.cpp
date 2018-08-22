@@ -13,7 +13,7 @@ CoreC::CoreC(LPCWSTR LWndName) : WndC(LWndName)
 	g_hOnScreenDC = m_hOnScreenDC;
 	g_hOffScreenDC = m_hOffScreenDC;
 
-	m_TimerSw = true;
+	m_TimerSw = false;
 }
 
 

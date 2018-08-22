@@ -23,8 +23,8 @@ void ObjC::Set(double x, double y, DWORD left, DWORD top, DWORD right, DWORD bot
 	m_ptPosition.x = x;
 	m_ptPosition.y = y;
 
-	m_ptDrawPostion.x = m_ptPosition.x - (m_rtDraw.right / 2);
-	m_ptDrawPostion.y = m_ptPosition.y - (m_rtDraw.bottom / 2);
+	m_ptDrawPosition.x = m_ptPosition.x + (m_rtDraw.right / 2);
+	m_ptDrawPosition.y = m_ptPosition.y + (m_rtDraw.bottom / 2);
 }
 
 bool ObjC::Load(const TCHAR* pszColor, const TCHAR* pszMask)

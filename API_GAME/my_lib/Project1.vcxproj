@@ -174,7 +174,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClInclude Include="11_CollisionObjC.h" />
     <ClInclude Include="09_3_UIObjC.h" />
     <ClInclude Include="12_1_HeroObjC.h" />
-    <ClInclude Include="12_2_NpcObjC.h" />
+    <ClInclude Include="12_2_MobAC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp" />
@@ -190,7 +190,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClCompile Include="10_CollisionC.cpp" />
     <ClCompile Include="11_CollisionObjC.cpp" />
     <ClCompile Include="12_1_HeroObjC.cpp" />
-    <ClCompile Include="12_2_NpcObjC.cpp" />
+    <ClCompile Include="12_2_MobAC.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

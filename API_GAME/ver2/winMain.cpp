@@ -1,14 +1,17 @@
 #pragma comment(lib, "core_lib.lib")  //이 라이브러리를 추가.
 #include "03_CoreC.h"
 #include "12_1_HeroObjC.h"
-#include "12_2_NpcObjC.h"
+#include "12_2_MobAC.h"
+
+#define  g_MaxMobA  100
 
 
 class GameC : public CoreC
 { 
 	BgObjC     m_BackGround;
 	HeroObjC   m_Hero;
-	NpcObjC    m_Monster1;
+
+	vector<MobAC>   m_MobA_List;
 
 public:
 	bool    Init() override;
@@ -29,8 +32,14 @@ bool    GameC::Init()
 	m_Hero.Load(L"../z_INPUT/data/50x50/Shipedits.bmp");
 	m_Hero.Set(300, 300, 0, 0, 32, 30);
 
-	m_Monster1.Load(L"../z_INPUT/data/50x50/bat.bmp");
-	m_Monster1.Set(500, 500, 0, 0, 32, 32);
+	m_MobA_List.resize(g_MaxMobA);
+	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
+		m_MobA_List[iObj].Load(L"../z_INPUT/data/50x50/bat.bmp");
+		m_MobA_List[iObj].Set(rand() % (g_rtClient.right - 200) + 100, rand() % (g_rtClient.bottom - 200) + 100 , 0, 0, 32, 32);
+		//m_MobA_List[iObj].Set(0,0, 0, 0, 32, 32);
+
+	}
+	
 	return true;
 }
 
@@ -40,8 +49,9 @@ bool    GameC::Frame()	 // 계산
 	m_BackGround.Frame();
 	m_Hero.Frame();
 
-	m_Monster1.Frame();
-
+	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
+		m_MobA_List[iObj].Frame();
+	}
 	return true;
 }
 
@@ -50,7 +60,9 @@ bool    GameC::Render() 	 // 드로우
 	m_BackGround.Render();
 	m_Hero.Render();
 
-	m_Monster1.Render();
+	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
+		m_MobA_List[iObj].Render();
+	}
 
 	return true;
 }
@@ -60,7 +72,10 @@ bool    GameC::Release()  // 소멸, 삭제
 	m_BackGround.Release();
 	m_Hero.Release();
 
-	m_Monster1.Release();
+	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
+		m_MobA_List[iObj].Release();
+	}
+
 
 	return true;
 
