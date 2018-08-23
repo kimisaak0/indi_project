@@ -4,6 +4,9 @@
 class MobAC : public CollisionObjC
 {
 protected:
+	static int  g_maxId;
+	int         m_iId;
+
 	double      m_dSpriteSpeed;
 	int         m_iSpriteIndex;
 

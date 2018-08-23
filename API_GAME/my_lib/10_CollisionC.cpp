@@ -23,8 +23,8 @@ bool collisionC::RectInRect(RECT rtDesk, RECT rtSrc)
 	srcRadius.x = (rtSrc.right - rtSrc.left) / 2;
 	srcRadius.y = (rtSrc.bottom - rtSrc.top) / 2;
 
-	if (radius.x <= (deskRadius.x + srcRadius.x) &&
-		radius.y <= (deskRadius.y + srcRadius.y)) {
+	if (radius.x < (deskRadius.x + srcRadius.x) &&
+		radius.y < (deskRadius.y + srcRadius.y)) {
 		return true;
 	}
 

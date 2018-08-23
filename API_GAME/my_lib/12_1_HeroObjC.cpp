@@ -59,6 +59,8 @@ bool HeroObjC::Render()
 		RGB(255, 255, 255)
 	);
 
+	//CollisionObjC::Render();
+
 	return true;
 }
 

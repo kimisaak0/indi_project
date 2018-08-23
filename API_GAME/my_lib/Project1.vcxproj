@@ -175,6 +175,9 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClInclude Include="09_3_UIObjC.h" />
     <ClInclude Include="12_1_HeroObjC.h" />
     <ClInclude Include="12_2_MobAC.h" />
+    <ClInclude Include="13_1MouseObjC.h" />
+    <ClInclude Include="14_1_StatueMOC.h" />
+    <ClInclude Include="14_2_Rock1MOC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp" />
@@ -185,12 +188,15 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClCompile Include="07_BmpMgrC.cpp" />
     <ClCompile Include="08_ObjC.cpp" />
     <ClCompile Include="09_1_BgObjC.cpp" />
-    <ClCompile Include="12_3_MapObj.cpp" />
+    <ClCompile Include="12_3_MapObjC.cpp" />
     <ClCompile Include="09_3_UIObjC.cpp" />
     <ClCompile Include="10_CollisionC.cpp" />
     <ClCompile Include="11_CollisionObjC.cpp" />
     <ClCompile Include="12_1_HeroObjC.cpp" />
     <ClCompile Include="12_2_MobAC.cpp" />
+    <ClCompile Include="13_1MouseObjC.cpp" />
+    <ClCompile Include="14_1_StatueMOC.cpp" />
+    <ClCompile Include="14_2_Rock1MOC.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
