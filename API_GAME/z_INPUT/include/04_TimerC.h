@@ -7,6 +7,8 @@
 
 class TimerC : public SingleMgr<TimerC>
 {
+	friend class SingleMgr<TimerC>;
+
 private:
 	DWORD   m_dwFrameCounter; // Frame 누적
 	DWORD   m_dwFPS;          // 1초동안 누적된 Frame
@@ -28,9 +30,10 @@ public:
  //	double   getSPF();
  //	TCHAR*   outTimer();
 
+protected:
+	TimerC();
 
 public:
-	TimerC();
 	virtual ~TimerC();
 
 };

@@ -8,11 +8,11 @@
 
 #include <iostream>
 
-#include <string>
-using std::string;
-
 #include <vector>
 using std::vector;
+
+#include <string>
+using std::string;
 
 #include <map>
 using std::map;
@@ -51,6 +51,15 @@ enum KeyState
 	KEY_UP,
 	KEY_HOLD,
 	KEY_end
+};
+
+enum Direction
+{
+	Direction_N,
+	Direction_E,
+	Direction_W,
+	Direction_S,
+	Direction_end
 };
 
 

@@ -23,6 +23,7 @@ typedef std::basic_string<TCHAR> T_STR;
 //전역 변수를 외부 변수로 등록
 extern HWND g_hWnd; //현재 선택된 윈도우 핸들값
 extern HINSTANCE g_hInstance; //현재 프로그램 핸들값
+extern HDC g_hOnScreenDC;
 extern HDC g_hOffScreenDC;    //현재 선택한 DC핸들값
 extern double g_dSecPerFrame; //초당 프레임 수
 

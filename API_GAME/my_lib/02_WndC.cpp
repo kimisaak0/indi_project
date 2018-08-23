@@ -6,6 +6,7 @@ RECT   g_rtWindow;
 RECT   g_rtClient;
 
 
+
 WndC::WndC(LPCWSTR LWndName)
 {
 	//윈도우 등록 및 생성에 실패하면 종료
@@ -27,7 +28,7 @@ LRESULT CALLBACK WndC::MsgProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lPara
 {
 	switch (iMsg) {
 		case WM_CREATE: {
-
+			ShowCursor(FALSE);
 		}break;
 
 		case WM_DESTROY: {
@@ -55,7 +56,7 @@ bool WndC::registWnd(LPCWSTR LWndName)
 
 	m_hWnd = CreateWindowEx(WS_EX_APPWINDOW,
 		m_wndC.lpszClassName, m_wndC.lpszClassName,
-		WS_OVERLAPPEDWINDOW,
+		WS_POPUPWINDOW,
 		0, 0,
 		GetSystemMetrics(SM_CXFULLSCREEN),
 		GetSystemMetrics(SM_CYFULLSCREEN),
@@ -74,6 +75,8 @@ bool WndC::registWnd(LPCWSTR LWndName)
 //윈도우 돌리기
 bool WndC::runWindow()
 {
+	gameInit();
+
 	MSG msg;
 	ZeroMemory(&msg, sizeof(MSG));
 

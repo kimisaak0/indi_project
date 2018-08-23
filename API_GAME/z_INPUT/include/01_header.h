@@ -53,6 +53,15 @@ enum KeyState
 	KEY_end
 };
 
+enum Direction
+{
+	Direction_N,
+	Direction_E,
+	Direction_W,
+	Direction_S,
+	Direction_end
+};
+
 
 //--------열거형 정의 끝----------//
 

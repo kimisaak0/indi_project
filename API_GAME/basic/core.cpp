@@ -5,6 +5,7 @@ core::core()
 }
 
 HDC g_hOffScreenDC = NULL;
+HDC g_hOnScreenDC = NULL;
 
 //초기화 (타이머랑 입력클래스 아직 core클래스의 함수는 하는 일이 없다.)
 bool    core::GameInit()
@@ -15,6 +16,7 @@ bool    core::GameInit()
 	m_hScreenDC = GetDC(m_hWnd);
 	m_hOffScreenDC = CreateCompatibleDC(m_hScreenDC);
 	g_hOffScreenDC = m_hOffScreenDC;
+	g_hOnScreenDC = m_hScreenDC;
 
 	m_hOffScreenBmp = CreateCompatibleBitmap(m_hScreenDC, m_rtClient.right, m_rtClient.bottom);
 	SelectObject(m_hOffScreenDC, m_hOffScreenBmp);
