@@ -1,6 +1,6 @@
 #pragma once
 #include "01_header.h"
-#include <math.h>
+
 
 struct sphere
 {

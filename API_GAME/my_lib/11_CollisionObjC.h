@@ -30,6 +30,8 @@ public:
 
 public:
 	virtual RECT    getRtCls();
+	virtual bool    getExist();
+
 	virtual void    setExist(bool bExist);
 	virtual void    setMapCls(bool bMapCls, RECT objRect);
 

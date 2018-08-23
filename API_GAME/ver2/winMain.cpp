@@ -18,7 +18,7 @@ class GameC : public CoreC
 	vector<Rock1MOC>    m_Rock1_List;
 
 	HeroObjC   m_Hero;
-	vector<MobAC>   m_MobA_List;
+	list<MobAC>   m_MobA_List;
 
 	MouseObjC  m_MouseCursor;
 
@@ -35,6 +35,7 @@ public:
 
 bool    GameC::Init()
 {
+	
 	srand((unsigned)GetTickCount());
 
 	m_MouseCursor.Load(L"../z_INPUT/data/50x50/CursorImage.bmp");
@@ -46,15 +47,14 @@ bool    GameC::Init()
 	m_statue.Load(L"../z_INPUT/data/50x50/Statue.bmp");
 	m_statue.Set(800, 300, 0, 0, 135, 160);
 
-	
-
 	m_Hero.Load(L"../z_INPUT/data/50x50/Shipedits.bmp");
 	m_Hero.Set(300, 300, 0, 0, 32, 30);
 
-	m_MobA_List.resize(g_MaxMobA);
 	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
-		m_MobA_List[iObj].Load(L"../z_INPUT/data/50x50/bat.bmp");
-		m_MobA_List[iObj].Set(rand() % (g_rtClient.right - 200) + 100, rand() % (g_rtClient.bottom - 200) + 100 , 0, 0, 32, 32);
+		MobAC mobATemp;
+		mobATemp.Load(L"../z_INPUT/data/50x50/bat.bmp");
+		mobATemp.Set(rand() % (g_rtClient.right - 200) + 100, rand() % (g_rtClient.bottom - 200) + 100, 0, 0, 32, 32);
+		m_MobA_List.push_back(mobATemp);
 		//m_MobA_List[iObj].Set(0,0, 0, 0, 32, 32);
 	}
 	
@@ -78,31 +78,88 @@ bool    GameC::Frame()	 // 계산
 
 	m_statue.Frame();
 
-	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
-		m_MobA_List[iObj].Frame();
+	list<MobAC>::iterator MobAIt;
+	list<shot1C>::iterator shot1It;
+
+	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
+		MobAIt->Frame();
 	}
+
 	
 	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
 		m_Rock1_List[iObj].setMapCls(true, m_Rock1_List[iObj].getRtCls());
 	}
 
+	//히어로 관련 충돌
+	if (I_ClsMgr.RectInRect(m_Hero.getRtCls(), m_statue.getRtCls())) {
+		m_Hero.setMapCls(true, m_statue.getRtCls());
+	}
+
+	for (int kObj = 0; kObj < g_MaxRock; kObj++) {
+		if (I_ClsMgr.RectInRect(m_Hero.getRtCls(), m_Rock1_List[kObj].getRtCls())) {
+			m_Hero.setMapCls(true, m_Rock1_List[kObj].getRtCls());
+		}
+	}
+
+	//존재하지 않는 몹1 리스트에서 제거
+	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); ) {
+		if (!MobAIt->getExist()) {
+			//MobAIt->Set(-200, -200, 0, 0, 0, 0);
+			MobAIt = m_MobA_List.erase(MobAIt);
+		}
+		else {
+			MobAIt++;
+		}
+	}
+
+
 	//몹1 관련 충돌
-	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
-		if (I_ClsMgr.RectInRect(m_MobA_List[iObj].getRtCls(), m_Hero.getRtCls())) {
-			m_MobA_List[iObj].setExist(false);
+	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
+		if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_Hero.getRtCls())) {
+			if (g_dGameTimer > 5) {
+				m_Hero.setExist(false);
+			}
 		}
 
-		if (I_ClsMgr.RectInRect(m_MobA_List[iObj].getRtCls(), m_statue.getRtCls())) {
-			m_MobA_List[iObj].setMapCls(true, m_statue.getRtCls());
+		if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_statue.getRtCls())) {
+			MobAIt->setMapCls(true, m_statue.getRtCls());
 		}
 
 		for (int kObj = 0; kObj < g_MaxRock; kObj++) {
-			if (I_ClsMgr.RectInRect(m_MobA_List[iObj].getRtCls(), m_Rock1_List[kObj].getRtCls())) {
-				m_MobA_List[iObj].setMapCls(true, m_Rock1_List[kObj].getRtCls());
+			if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
+				MobAIt->setMapCls(true, m_Rock1_List[kObj].getRtCls());
+			}
+		}
+
+		for (shot1It = m_Hero.shot1_list.begin(); shot1It != m_Hero.shot1_list.end(); shot1It++) {
+			if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), shot1It->getRtCls())) {
+				if (shot1It->getExist()) {
+					MobAIt->setExist(false);
+				}
 			}
 		}
 	}
 
+	//shot1 관련 충돌
+
+	for (shot1It = m_Hero.shot1_list.begin(); shot1It != m_Hero.shot1_list.end(); shot1It++) {
+		for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
+			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), MobAIt->getRtCls())) {
+				shot1It->setExist(false);
+			}
+		}
+
+		if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_statue.getRtCls())) {
+			shot1It->setExist(false);
+		}
+
+		for (int kObj = 0; kObj < g_MaxRock; kObj++) {
+			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
+				shot1It->setExist(false);
+			}
+		}
+
+	}
 
 
 	m_MouseCursor.Frame();
@@ -118,8 +175,9 @@ bool    GameC::Render() 	 // 드로우
 
 	m_statue.Render();
 
-	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
-		m_MobA_List[iObj].Render();
+	list<MobAC>::iterator MobAIt;
+	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
+		MobAIt->Render();
 	}
 
 	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
@@ -141,8 +199,9 @@ bool    GameC::Release()  // 소멸, 삭제
 
 	m_statue.Release();
 
-	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
-		m_MobA_List[iObj].Release();
+	list<MobAC>::iterator MobAIt;
+	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
+		MobAIt->Release();
 	}
 
 	for (int iObj = 0; iObj < g_MaxRock; iObj++) {

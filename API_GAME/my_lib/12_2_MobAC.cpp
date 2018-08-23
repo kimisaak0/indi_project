@@ -92,7 +92,7 @@ bool MobAC::Frame()
 		}
 
 
-		//물체랑 부딪혔다!
+		//맵 오브젝트랑 부딪혔다! 밀어내기 (살짝 버그 있음)
 		if (m_bMapCls) {
 			int iOverW = m_rtOverlap.right - m_rtOverlap.left; //충돌한 넓이
 			int iOverH = m_rtOverlap.bottom - m_rtOverlap.top; //충돌한 높이
@@ -130,6 +130,7 @@ bool MobAC::Frame()
 		CollisionObjC::Frame();
 
 	}
+
 	return true;
 }
 
@@ -149,6 +150,7 @@ bool MobAC::Render()
 	}
 	return true;
 }
+
 
 
 

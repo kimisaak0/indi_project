@@ -8,6 +8,7 @@
 
 // 프로그램 시작 시간(Tick단위)
 double g_dSecPerFrame;
+double g_dGameTimer;
 
 TimerC::TimerC()
 {
@@ -41,6 +42,7 @@ bool    TimerC::Frame()
 	g_dSecPerFrame = m_dSecPerFrame;
 
 	m_dGameTimer += m_dSecPerFrame;                        	//초단위 누적
+	g_dGameTimer = m_dGameTimer;
 
 	m_dTimer += m_dSecPerFrame;                            	//초단위 누적
 

@@ -2,7 +2,58 @@
 
 BgObjC::BgObjC()
 {
+
 }
+
+bool BgObjC::FadeIn()
+{
+	m_dAlpha = 0;
+
+	m_dAlpha += g_dSecPerFrame * 30;
+	if (m_dAlpha > 255) return true;
+
+	static BLENDFUNCTION blend;
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0;
+	blend.SourceConstantAlpha = m_dAlpha;
+	blend.AlphaFormat = AC_SRC_OVER;
+
+	::AlphaBlend(g_hOffScreenDC,
+		m_ptDrawPosition.x, m_ptDrawPosition.y,
+		m_rtDraw.right, m_rtDraw.bottom,
+		m_pColorBmp->m_hMemDC,
+		m_rtDraw.left,
+		m_rtDraw.top,
+		m_rtDraw.right,
+		m_rtDraw.bottom,
+		blend);
+	return false;
+}
+
+bool BgObjC::FadeOut()
+{
+	m_dAlpha = 255;
+	m_dAlpha -= g_dSecPerFrame * 30;
+	if (m_dAlpha < 0) return true;
+
+	static BLENDFUNCTION blend;
+	blend.BlendOp = AC_SRC_OVER;
+	blend.BlendFlags = 0;
+	blend.SourceConstantAlpha = m_dAlpha;
+	blend.AlphaFormat = AC_SRC_OVER;
+
+	::AlphaBlend(g_hOffScreenDC,
+		m_ptDrawPosition.x, m_ptDrawPosition.y,
+		m_rtDraw.right, m_rtDraw.bottom,
+		m_pColorBmp->m_hMemDC,
+		m_rtDraw.left,
+		m_rtDraw.top,
+		m_rtDraw.right,
+		m_rtDraw.bottom,
+		blend);
+	return false;
+}
+
 
 bool BgObjC::Render()
 {

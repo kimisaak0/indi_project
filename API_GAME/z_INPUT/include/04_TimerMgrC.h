@@ -5,10 +5,8 @@
 // 2) 1초의 프레임 카운터 : m_dwFrameCount
 // 3) 게임 실행 누적 시간 : m_dGameTimer;
 
-class TimerC : public SingleMgr<TimerC>
+class TimerMgrC : public SingleMgr<TimerMgrC>
 {
-	friend class SingleMgr<TimerC>;
-
 private:
 	DWORD   m_dwFrameCounter; // Frame 누적
 	DWORD   m_dwFPS;          // 1초동안 누적된 Frame
@@ -26,15 +24,15 @@ public:
 	bool    Render();	 // 드로우
 	bool    Release();	 // 소멸, 삭제
 
-						 //public:
-						 //	double   getSPF();
-						 //	TCHAR*   outTimer();
+ //public:
+ //	double   getSPF();
+ //	TCHAR*   outTimer();
 
 protected:
-	TimerC();
+	TimerMgrC();
 
 public:
-	virtual ~TimerC();
+	virtual ~TimerMgrC();
 
 };
 

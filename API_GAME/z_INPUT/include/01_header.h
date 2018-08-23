@@ -5,6 +5,8 @@
 #include <assert.h>
 #include <Windows.h>
 #include <tchar.h>
+#include <math.h>
+
 
 #include <iostream>
 
@@ -40,6 +42,7 @@ extern HDC       g_hOffScreenDC;
 
 //TimerC에서 뻈음...
 extern double    g_dSecPerFrame; //초당 프레임 수
+extern double    g_dGameTimer;
 
 //--------외부 변수 정의 끝----------//
 

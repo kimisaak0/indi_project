@@ -95,6 +95,11 @@ void    CollisionObjC::setMapCls(bool bMapCls, RECT objRect)
 	//충돌영역 구했음
 }
 
+bool CollisionObjC::getExist()
+{
+	return m_bExist;
+}
+
 CollisionObjC::~CollisionObjC()
 {
 

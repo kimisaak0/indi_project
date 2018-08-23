@@ -17,6 +17,7 @@ public:
 	bool Frame() override;
 	bool Render() override;
 
+
 public:
 	MobAC();
 	virtual ~MobAC();
