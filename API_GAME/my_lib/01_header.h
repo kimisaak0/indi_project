@@ -66,7 +66,11 @@ enum Direction
 };
 
 
+
 //--------열거형 정의 끝----------//
+
+#define  g_MaxMobA  100
+#define  g_MaxRock  10
 
 template<class T> class SingleMgr
 {

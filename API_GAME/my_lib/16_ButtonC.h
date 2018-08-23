@@ -1,7 +1,9 @@
 #pragma once
-#include "08_ObjC.h"
+#include "11_CollisionObjC.h"
 
-class ButtonC : public ObjC
+class ButtonC : public CollisionObjC
 {
 public:
+
+	bool Render() override;
 };

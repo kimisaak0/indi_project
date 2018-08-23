@@ -1,26 +1,21 @@
 #pragma comment(lib, "core_lib.lib")  //이 라이브러리를 추가.
 #include "03_CoreC.h"
-#include "12_1_HeroObjC.h"
-#include "12_2_MobAC.h"
-#include "13_1MouseObjC.h"
-#include "14_1_StatueMOC.h"
-#include "14_2_Rock1MOC.h"
 
-#define  g_MaxMobA  100
-#define  g_MaxRock  10
+#include "18_1_SceneLobbyC.h"
+#include "18_2_SceneGame.h"
+
+
 
 
 class GameC : public CoreC
 { 
-	BgObjC     m_BackGround;
-
-	StatueMOC    m_statue;
-	vector<Rock1MOC>    m_Rock1_List;
-
-	HeroObjC   m_Hero;
-	list<MobAC>   m_MobA_List;
 
 	MouseObjC  m_MouseCursor;
+
+	SceneC*    m_pScene;
+
+	SceneC*    m_pLobby;
+	SceneC*    m_pGame;
 
 public:
 	bool    Init() override;
@@ -35,36 +30,24 @@ public:
 
 bool    GameC::Init()
 {
-	
-	srand((unsigned)GetTickCount());
-
 	m_MouseCursor.Load(L"../z_INPUT/data/50x50/CursorImage.bmp");
-	m_MouseCursor.Set(0, 0, 0, 0, 200,200);
+	m_MouseCursor.Set(0, 0, 0, 0, 200, 200);
 
-	m_BackGround.Load(L"../z_INPUT/data/50x50/watar_tileset.bmp");
-	m_BackGround.Set(0, 0, 0, 0, 50, 50);
+	m_pLobby = new SceneLobbyC;
+	m_pGame = new SceneGame;
+	
+	m_pScene = m_pLobby;
 
-	m_statue.Load(L"../z_INPUT/data/50x50/Statue.bmp");
-	m_statue.Set(800, 300, 0, 0, 135, 160);
-
-	m_Hero.Load(L"../z_INPUT/data/50x50/Shipedits.bmp");
-	m_Hero.Set(300, 300, 0, 0, 32, 30);
-
-	for (int iObj = 0; iObj < g_MaxMobA; iObj++) {
-		MobAC mobATemp;
-		mobATemp.Load(L"../z_INPUT/data/50x50/bat.bmp");
-		mobATemp.Set(rand() % (g_rtClient.right - 200) + 100, rand() % (g_rtClient.bottom - 200) + 100, 0, 0, 32, 32);
-		m_MobA_List.push_back(mobATemp);
-		//m_MobA_List[iObj].Set(0,0, 0, 0, 32, 32);
+	switch (m_pScene->getSceneID()) {
+		case 0: {
+			m_pScene->m_BackGround.m_iID = 0;
+		} break;
+			
+		case 1: {
+		}break;
 	}
 	
-	m_Rock1_List.resize(g_MaxRock);
-	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
-		m_Rock1_List[iObj].Load(L"../z_INPUT/data/50x50/Rock.bmp");
-		m_Rock1_List[iObj].Set(rand() % (g_rtClient.right - 200) + 100, rand() % (g_rtClient.bottom - 200) + 100, 21, 7, 48, 48);
-
-	}
-
+	m_pScene->Init();
 	return true;
 }
 
@@ -72,96 +55,21 @@ bool    GameC::Init()
 bool    GameC::Frame()	 // 계산
 {
 	
+	switch (m_pScene->getSceneID()) {
+		case 0: {
+			if (m_pScene->getNextScene()) {
+				m_pScene = m_pGame;
+				m_pScene->m_BackGround.m_iID = 1;
 
-	m_BackGround.Frame();
-	m_Hero.Frame();
-
-	m_statue.Frame();
-
-	list<MobAC>::iterator MobAIt;
-	list<shot1C>::iterator shot1It;
-
-	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
-		MobAIt->Frame();
-	}
-
-	
-	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
-		m_Rock1_List[iObj].setMapCls(true, m_Rock1_List[iObj].getRtCls());
-	}
-
-	//히어로 관련 충돌
-	if (I_ClsMgr.RectInRect(m_Hero.getRtCls(), m_statue.getRtCls())) {
-		m_Hero.setMapCls(true, m_statue.getRtCls());
-	}
-
-	for (int kObj = 0; kObj < g_MaxRock; kObj++) {
-		if (I_ClsMgr.RectInRect(m_Hero.getRtCls(), m_Rock1_List[kObj].getRtCls())) {
-			m_Hero.setMapCls(true, m_Rock1_List[kObj].getRtCls());
-		}
-	}
-
-	//존재하지 않는 몹1 리스트에서 제거
-	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); ) {
-		if (!MobAIt->getExist()) {
-			//MobAIt->Set(-200, -200, 0, 0, 0, 0);
-			MobAIt = m_MobA_List.erase(MobAIt);
-		}
-		else {
-			MobAIt++;
-		}
-	}
-
-
-	//몹1 관련 충돌
-	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
-		if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_Hero.getRtCls())) {
-			if (g_dGameTimer > 5) {
-				m_Hero.setExist(false);
 			}
-		}
+		} break;
 
-		if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_statue.getRtCls())) {
-			MobAIt->setMapCls(true, m_statue.getRtCls());
-		}
-
-		for (int kObj = 0; kObj < g_MaxRock; kObj++) {
-			if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
-				MobAIt->setMapCls(true, m_Rock1_List[kObj].getRtCls());
-			}
-		}
-
-		for (shot1It = m_Hero.shot1_list.begin(); shot1It != m_Hero.shot1_list.end(); shot1It++) {
-			if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), shot1It->getRtCls())) {
-				if (shot1It->getExist()) {
-					MobAIt->setExist(false);
-				}
-			}
-		}
+		case 1: {
+			
+		}break;
 	}
 
-	//shot1 관련 충돌
-
-	for (shot1It = m_Hero.shot1_list.begin(); shot1It != m_Hero.shot1_list.end(); shot1It++) {
-		for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
-			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), MobAIt->getRtCls())) {
-				shot1It->setExist(false);
-			}
-		}
-
-		if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_statue.getRtCls())) {
-			shot1It->setExist(false);
-		}
-
-		for (int kObj = 0; kObj < g_MaxRock; kObj++) {
-			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
-				shot1It->setExist(false);
-			}
-		}
-
-	}
-
-
+	m_pScene->Frame();
 	m_MouseCursor.Frame();
 
 	return true;
@@ -170,46 +78,17 @@ bool    GameC::Frame()	 // 계산
 bool    GameC::Render() 	 // 드로우
 {
 
-	m_BackGround.Render();
-	m_Hero.Render();
-
-	m_statue.Render();
-
-	list<MobAC>::iterator MobAIt;
-	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
-		MobAIt->Render();
-	}
-
-	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
-		m_Rock1_List[iObj].Render();
-	}
-
-
+	m_pScene->Render();
 	m_MouseCursor.Render();
-
 
 	return true;
 }
 
 bool    GameC::Release()  // 소멸, 삭제
 {
-	
-	m_BackGround.Release();
-	m_Hero.Release();
 
-	m_statue.Release();
-
-	list<MobAC>::iterator MobAIt;
-	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
-		MobAIt->Release();
-	}
-
-	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
-		m_Rock1_List[iObj].Release();
-	}
-
+	m_pScene->Frame();
 	m_MouseCursor.Release();
-
 
 	return true;
 
