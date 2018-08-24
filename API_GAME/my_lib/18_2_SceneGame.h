@@ -1,3 +1,4 @@
+#pragma once
 #include "17_SceneC.h"
 
 #include "12_1_HeroObjC.h"
@@ -12,7 +13,7 @@ protected:
 	BgObjC     m_BackGround;
 
 	StatueMOC    m_statue;
-	//vector<Rock1MOC>    m_Rock1_List;
+	vector<Rock1MOC>    m_Rock1_List;
 
 	HeroObjC   m_Hero;
 	list<MobAC>   m_MobA_List;

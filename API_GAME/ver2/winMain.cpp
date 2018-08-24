@@ -40,7 +40,7 @@ bool    GameC::Init()
 
 	switch (m_pScene->getSceneID()) {
 		case 0: {
-			m_pScene->m_BackGround.m_iID = 0;
+			//m_pScene->m_BackGround.m_iID = 0;
 		} break;
 			
 		case 1: {
@@ -59,7 +59,8 @@ bool    GameC::Frame()	 // °è»ê
 		case 0: {
 			if (m_pScene->getNextScene()) {
 				m_pScene = m_pGame;
-				m_pScene->m_BackGround.m_iID = 1;
+				m_pScene->Init();
+				//m_pScene->m_BackGround.m_iID = 1;
 
 			}
 		} break;

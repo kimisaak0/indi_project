@@ -1,3 +1,4 @@
+#pragma once
 #include "13_1MouseObjC.h"
 
 MouseObjC::MouseObjC()

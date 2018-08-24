@@ -1,3 +1,4 @@
+#pragma once
 #include "14_2_Rock1MOC.h"
 
 bool Rock1MOC::Frame()

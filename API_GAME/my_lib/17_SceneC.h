@@ -22,7 +22,7 @@ public:
 	virtual bool	Release() { return true; };
 
 public:
-	SceneC();
+	 SceneC();
 	virtual ~SceneC();
 
 };

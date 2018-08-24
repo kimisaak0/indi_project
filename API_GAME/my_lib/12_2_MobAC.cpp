@@ -1,3 +1,4 @@
+#pragma once
 #include "12_2_MobAC.h"
 
 int MobAC::g_maxId = 0;

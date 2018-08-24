@@ -1,3 +1,4 @@
+#pragma once
 #include "18_2_SceneGame.h"
 
 SceneGame::SceneGame()
@@ -31,12 +32,12 @@ bool	SceneGame::Init()
 		//m_MobA_List[iObj].Set(0,0, 0, 0, 32, 32);
 	}
 
-	//m_Rock1_List.resize(g_MaxRock);
-	//for (int iObj = 0; iObj < g_MaxRock; iObj++) {
-	//	m_Rock1_List[iObj].Load(L"../z_INPUT/data/50x50/Rock.bmp");
-	//	m_Rock1_List[iObj].Set(rand() % (g_rtClient.right - 200) + 100, rand() % (g_rtClient.bottom - 200) + 100, 21, 7, 48, 48);
+	m_Rock1_List.resize(g_MaxRock);
+	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
+		m_Rock1_List[iObj].Load(L"../z_INPUT/data/50x50/Rock.bmp");
+		m_Rock1_List[iObj].Set(rand() % (g_rtClient.right - 200) + 100, rand() % (g_rtClient.bottom - 200) + 100, 21, 7, 48, 48);
 
-	//}
+	}
 
 	return true;
 }
@@ -56,20 +57,20 @@ bool	SceneGame::Frame()
 	}
 
 
-	//for (int iObj = 0; iObj < g_MaxRock; iObj++) {
-	//	m_Rock1_List[iObj].setMapCls(true, m_Rock1_List[iObj].getRtCls());
-	//}
+	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
+		m_Rock1_List[iObj].setMapCls(true, m_Rock1_List[iObj].getRtCls());
+	}
 
 	//히어로 관련 충돌
 	if (I_ClsMgr.RectInRect(m_Hero.getRtCls(), m_statue.getRtCls())) {
 		m_Hero.setMapCls(true, m_statue.getRtCls());
 	}
 
-	//for (int kObj = 0; kObj < g_MaxRock; kObj++) {
-	//	if (I_ClsMgr.RectInRect(m_Hero.getRtCls(), m_Rock1_List[kObj].getRtCls())) {
-	//		m_Hero.setMapCls(true, m_Rock1_List[kObj].getRtCls());
-	//	}
-	//}
+	for (int kObj = 0; kObj < g_MaxRock; kObj++) {
+		if (I_ClsMgr.RectInRect(m_Hero.getRtCls(), m_Rock1_List[kObj].getRtCls())) {
+			m_Hero.setMapCls(true, m_Rock1_List[kObj].getRtCls());
+		}
+	}
 
 	//존재하지 않는 몹1 리스트에서 제거
 	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); ) {
@@ -95,11 +96,11 @@ bool	SceneGame::Frame()
 			MobAIt->setMapCls(true, m_statue.getRtCls());
 		}
 
-		//for (int kObj = 0; kObj < g_MaxRock; kObj++) {
-		//	if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
-		//		MobAIt->setMapCls(true, m_Rock1_List[kObj].getRtCls());
-		//	}
-		//}
+		for (int kObj = 0; kObj < g_MaxRock; kObj++) {
+			if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
+				MobAIt->setMapCls(true, m_Rock1_List[kObj].getRtCls());
+			}
+		}
 
 		for (shot1It = m_Hero.shot1_list.begin(); shot1It != m_Hero.shot1_list.end(); shot1It++) {
 			if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), shot1It->getRtCls())) {
@@ -123,11 +124,11 @@ bool	SceneGame::Frame()
 			shot1It->setExist(false);
 		}
 
-		//for (int kObj = 0; kObj < g_MaxRock; kObj++) {
-		//	if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
-		//		shot1It->setExist(false);
-		//	}
-		//}
+		for (int kObj = 0; kObj < g_MaxRock; kObj++) {
+			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
+				shot1It->setExist(false);
+			}
+		}
 
 	}
 
@@ -136,6 +137,10 @@ bool	SceneGame::Frame()
 
 bool	SceneGame::Render()
 {
+	if (m_BackGround.m_iID == 0) {
+		m_BackGround.m_iID = 1;
+		Init();
+	}
 
 	m_BackGround.Render();
 	m_Hero.Render();
@@ -146,10 +151,10 @@ bool	SceneGame::Render()
 	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
 		MobAIt->Render();
 	}
-/*
+
 	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
 		m_Rock1_List[iObj].Render();
-	}*/
+	}
 
 
 	return true;
@@ -167,9 +172,9 @@ bool	SceneGame::Release()
 		MobAIt->Release();
 	}
 
-	//for (int iObj = 0; iObj < g_MaxRock; iObj++) {
-	//	m_Rock1_List[iObj].Release();
-	//}
+	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
+		m_Rock1_List[iObj].Release();
+	}
 
 
 	return true;

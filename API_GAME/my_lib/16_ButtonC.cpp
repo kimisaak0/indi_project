@@ -1,3 +1,4 @@
+#pragma once
 #include "16_ButtonC.h"
 
 bool ButtonC::Render()

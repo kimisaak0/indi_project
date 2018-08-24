@@ -1,3 +1,4 @@
+#pragma once
 #include "18_1_SceneLobbyC.h"
 
 SceneLobbyC::SceneLobbyC()
@@ -8,6 +9,8 @@ SceneLobbyC::SceneLobbyC()
 bool	SceneLobbyC::Init()
 {
 	m_bNextScene = false;
+
+
 
 	m_BackGround.Init();
 	m_BackGround.Load(L"../z_INPUT/data/50x50/start.bmp");
@@ -40,6 +43,9 @@ bool	SceneLobbyC::Frame()
 
 bool	SceneLobbyC::Render()
 {
+	m_BackGround.m_iID = 0;
+
+
 	m_BackGround.Render();
 	m_btnStart.Render();
 

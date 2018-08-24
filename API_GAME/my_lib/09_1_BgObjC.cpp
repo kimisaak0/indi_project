@@ -1,3 +1,4 @@
+#pragma once
 #include "09_1_BgObjC.h"
 
 BgObjC::BgObjC()

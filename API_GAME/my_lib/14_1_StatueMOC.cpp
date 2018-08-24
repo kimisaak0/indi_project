@@ -1,3 +1,4 @@
+#pragma once
 #include "14_1_StatueMOC.h"
 
 bool StatueMOC::Frame()

@@ -1,3 +1,4 @@
+#pragma once
 #include "04_TimerC.h"
 
 //timeGetTime() : winmm.lib 추가해야함

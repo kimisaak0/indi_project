@@ -1,3 +1,4 @@
+#pragma once
 #include "05_InputC.h"
 
 InputC::InputC()

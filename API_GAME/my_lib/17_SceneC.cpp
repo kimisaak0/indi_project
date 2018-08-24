@@ -1,3 +1,4 @@
+#pragma once
 #include "17_SceneC.h"
 
 SceneC::SceneC()

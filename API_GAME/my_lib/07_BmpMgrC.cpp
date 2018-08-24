@@ -1,3 +1,4 @@
+#pragma once
 #include "07_BmpMgrC.h"
 
 BmpMgrC::BmpMgrC()

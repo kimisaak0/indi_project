@@ -1,3 +1,4 @@
+#pragma once
 #include "15_1_shot1C.h"
 
 void shot1C::setSpeed(double sx, double sy)

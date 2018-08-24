@@ -1,3 +1,4 @@
+#pragma once
 #include "02_WndC.h"
 
 //생성자에서 대입

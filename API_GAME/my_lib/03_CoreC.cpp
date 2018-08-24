@@ -1,3 +1,4 @@
+#pragma once
 #include "03_CoreC.h"
 
 HDC g_hOnScreenDC;

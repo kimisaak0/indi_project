@@ -1,3 +1,4 @@
+#pragma once
 #include "12_1_HeroObjC.h"
 
 HeroObjC::HeroObjC()

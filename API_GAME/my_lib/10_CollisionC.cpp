@@ -1,3 +1,4 @@
+#pragma once
 #include "10_CollisionC.h"
 
 collisionC::collisionC()

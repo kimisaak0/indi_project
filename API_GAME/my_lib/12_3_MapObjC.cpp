@@ -1,3 +1,4 @@
+#pragma once
 #include "12_3_MapObjC.h"
 
 bool MapObjC::Render()
