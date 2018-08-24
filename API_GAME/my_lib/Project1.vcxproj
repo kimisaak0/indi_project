@@ -183,6 +183,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClInclude Include="17_SceneC.h" />
     <ClInclude Include="18_1_SceneLobbyC.h" />
     <ClInclude Include="18_2_SceneGame.h" />
+    <ClInclude Include="19_1_SpriteDead1C.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp" />
@@ -207,6 +208,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClCompile Include="17_SceneC.cpp" />
     <ClCompile Include="18_1_SceneLobbyC.cpp" />
     <ClCompile Include="18_2_SceneGame.cpp" />
+    <ClCompile Include="19_1_SpriteDead1C.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

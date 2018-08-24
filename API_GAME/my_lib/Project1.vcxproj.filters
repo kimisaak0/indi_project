@@ -84,6 +84,9 @@
     <ClInclude Include="18_2_SceneGame.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="19_1_SpriteDead1C.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp">
@@ -150,6 +153,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="18_2_SceneGame.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="19_1_SpriteDead1C.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

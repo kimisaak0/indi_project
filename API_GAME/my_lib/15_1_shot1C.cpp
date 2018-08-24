@@ -7,11 +7,27 @@ void shot1C::setSpeed(double sx, double sy)
 	m_dSpeedY = sy;
 
 	m_bExist = true;
+
+	m_dSpriteSpeed = 0;
+	m_iSpriteDir = 1;
+
 }
 
 
 bool shot1C::Frame()
 {
+	m_dSpriteSpeed += g_dSecPerFrame * 0.1;
+
+	if (m_dSpriteSpeed > 0.01) {
+		m_dSpriteSpeed = 0;
+
+		m_rtDraw.left += m_iSpriteDir * 30;
+		if (m_rtDraw.left > 50 || m_rtDraw.left <= 20) {
+			m_rtDraw.left = 20;
+			//m_iSpriteDir *= -1;
+		}
+	}
+
 	if (m_bExist) {
 		m_ptPosition.x += m_dSpeedX * g_dSecPerFrame * 500;
 		m_ptPosition.y += m_dSpeedY * g_dSecPerFrame * 500;

@@ -50,13 +50,13 @@ bool ObjC::Frame()
 bool ObjC::Render()
 {
 	if (m_pMaskBmp == nullptr) {
-		BitBlt(g_hOffScreenDC,
-			m_ptPosition.x, m_ptPosition.y,
-			m_rtDraw.right, m_rtDraw.bottom,
-			m_pColorBmp->m_hMemDC,
-			m_rtDraw.left, m_rtDraw.top,
-			SRCCOPY
-		);
+		//BitBlt(g_hOffScreenDC,
+		//	m_ptPosition.x, m_ptPosition.y,
+		//	m_rtDraw.right, m_rtDraw.bottom,
+		//	m_pColorBmp->m_hMemDC,
+		//	m_rtDraw.left, m_rtDraw.top,
+		//	SRCCOPY
+		//);
 
 		TransparentBlt(g_hOffScreenDC,
 			m_ptPosition.x, m_ptPosition.y,
@@ -81,29 +81,29 @@ bool ObjC::Render()
 
 
 
-			BitBlt(g_hOffScreenDC,
-				m_ptPosition.x, m_ptPosition.y,
-				m_rtDraw.right, m_rtDraw.bottom,
-				m_pMaskBmp->m_hMemDC,
-				m_rtDraw.left, m_rtDraw.top,
-				SRCAND
-			); //AND연산
+			//BitBlt(g_hOffScreenDC,
+			//	m_ptPosition.x, m_ptPosition.y,
+			//	m_rtDraw.right, m_rtDraw.bottom,
+			//	m_pMaskBmp->m_hMemDC,
+			//	m_rtDraw.left, m_rtDraw.top,
+			//	SRCAND
+			//); //AND연산
 
-			BitBlt(g_hOffScreenDC,
-				m_ptPosition.x, m_ptPosition.y,
-				m_rtDraw.right, m_rtDraw.bottom,
-				m_pColorBmp->m_hMemDC,
-				m_rtDraw.left, m_rtDraw.top,
-				SRCINVERT
-			); //XOR연산
+			//BitBlt(g_hOffScreenDC,
+			//	m_ptPosition.x, m_ptPosition.y,
+			//	m_rtDraw.right, m_rtDraw.bottom,
+			//	m_pColorBmp->m_hMemDC,
+			//	m_rtDraw.left, m_rtDraw.top,
+			//	SRCINVERT
+			//); //XOR연산
 
-			BitBlt(g_hOffScreenDC,
-				m_ptPosition.x, m_ptPosition.y,
-				m_rtDraw.right, m_rtDraw.bottom,
-				m_pMaskBmp->m_hMemDC,
-				m_rtDraw.left, m_rtDraw.top,
-				SRCINVERT
-			); //XOR연산
+			//BitBlt(g_hOffScreenDC,
+			//	m_ptPosition.x, m_ptPosition.y,
+			//	m_rtDraw.right, m_rtDraw.bottom,
+			//	m_pMaskBmp->m_hMemDC,
+			//	m_rtDraw.left, m_rtDraw.top,
+			//	SRCINVERT
+			//); //XOR연산
 	}
 	return true;
 }
