@@ -17,6 +17,8 @@ public:
 	bool RectInPt(RECT rtDesk, POINT pt);
 	bool SphereInSphere(RECT rtDesk, RECT rtSrc);
 	bool SphereInPt(RECT rtDesk, POINT pt);
+	//bool SphereInPt(double Radius, POINT pt);
+
 
 protected:
 	collisionC();

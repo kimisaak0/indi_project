@@ -27,6 +27,14 @@ void HeroObjC::addShort1(POINT mousePos)
 	shot1_list.push_back(shot);
 }
 
+//void HeroObjC::makeSona()
+//{
+//	sonaC sona;
+//
+//
+//
+//}
+
 bool HeroObjC::Init()
 {
 	CollisionObjC::Init();
@@ -35,6 +43,12 @@ bool HeroObjC::Init()
 
 	m_dSpeedX = 0;
 	m_dSpeedY = 0;
+
+	m_bSonaSw = false;
+
+	m_sona.Init();
+	m_sona.Load(L"../z_INPUT/data/50x50/sona.bmp");
+	m_sona.Set(m_ptDrawPosition.x, m_ptDrawPosition.y, 0, 0, 250, 250);
 
 	return true;
 }
@@ -50,6 +64,16 @@ bool HeroObjC::Frame()
 				m_dShotDelay -= 0.1;
 			}
 		}
+
+		//소나를 킵니다.
+		if (I_Input.Key('R') == KEY_DOWN) {
+			//makeSona();
+			m_bSonaSw = !m_bSonaSw;
+		}
+
+		m_sona.setPos(m_ptDrawPosition);
+		m_sona.Frame();
+		
 
 		list<shot1C>::iterator shot1It;
 
@@ -192,6 +216,11 @@ bool HeroObjC::Render()
 
 		for (shot1It = shot1_list.begin(); shot1It != shot1_list.end(); shot1It++) {
 			shot1It->Render();
+		}
+
+		//소나 그리기
+		if (m_bSonaSw) {
+			m_sona.Render();
 		}
 
 		//디버그 렉트 그리기용

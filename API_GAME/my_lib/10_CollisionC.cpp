@@ -90,7 +90,6 @@ bool collisionC::SphereInPt(RECT rtDesk, POINT pt)
 }
 
 
-
 collisionC::~collisionC()
 {
 

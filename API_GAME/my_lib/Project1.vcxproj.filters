@@ -99,6 +99,9 @@
     <ClInclude Include="20_SoundMgrC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="21_sonaC.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="05_InputC.cpp">
@@ -174,6 +177,9 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="20_SoundMgrC.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="21_sonaC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

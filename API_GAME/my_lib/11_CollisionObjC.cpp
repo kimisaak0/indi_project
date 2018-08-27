@@ -69,7 +69,6 @@ bool CollisionObjC::Frame()
 
 bool CollisionObjC::Render()
 {
-
 	if (m_bDebugRect)
 	{
 		//int prevMode = SetROP2(g_hOffScreenDC, R2_XORPEN);

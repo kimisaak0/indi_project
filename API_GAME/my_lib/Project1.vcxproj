@@ -186,6 +186,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClInclude Include="19_1_SpriteDead1C.h" />
     <ClInclude Include="18_3_SceneOverC.h" />
     <ClInclude Include="20_SoundMgrC.h" />
+    <ClInclude Include="21_sonaC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp" />
@@ -213,6 +214,7 @@ copy "*.lib" "../z_INPUT/lib"</Command>
     <ClCompile Include="18_3_SceneOverC.cpp" />
     <ClCompile Include="19_1_SpriteDead1C.cpp" />
     <ClCompile Include="20_SoundMgrC.cpp" />
+    <ClCompile Include="21_sonaC.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
