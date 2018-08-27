@@ -19,6 +19,31 @@ MobAC::MobAC()
 	m_dSpeedY = rand() % 30 + 15;
 
 	m_iId = g_maxId++;
+
+	m_dead.Load(L"../z_INPUT/data/50x50/explosion01.bmp");
+}
+
+bool MobAC::Init()
+{
+	CollisionObjC::Init();
+	m_rtDraw.left = 0;
+	m_dSpriteSpeed = 0;
+	m_iSpriteIndex = 0;
+
+	m_dDirChg = 0;
+	m_dMoveCycleSpeed = 0;
+
+	m_dDirX = (rand() % 2) ? +1 : -1;
+	m_dDirY = (rand() % 2) ? +1 : -1;
+
+	m_dSpeedX = rand() % 30 + 15;
+	m_dSpeedY = rand() % 30 + 15;
+
+	m_iId = g_maxId++;
+
+	m_dead.Load(L"../z_INPUT/data/50x50/explosion01.bmp");
+
+	return true;
 }
 
 bool MobAC::Frame()
@@ -131,6 +156,10 @@ bool MobAC::Frame()
 		CollisionObjC::Frame();
 
 	}
+	else {
+		
+		m_dead.Frame();
+	}
 
 	return true;
 }
@@ -149,13 +178,22 @@ bool MobAC::Render()
 
 		CollisionObjC::Render();
 	}
+	else {
+		m_dead.Set(m_ptPosition.x, m_ptPosition.y, 0, 0, 150, 150);
+		m_dead.Render();
+	}
 	return true;
 }
 
+
+dPointC MobAC::getPt()
+{
+	return m_ptPosition;
+}
 
 
 
 MobAC::~MobAC()
 {
-
+	m_dead.Release();
 }

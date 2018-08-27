@@ -29,6 +29,7 @@ bool    TimerC::Init()
 {
 
 	m_dwBeforeTick = timeGetTime();
+	m_dGameTimer = 0;
 
 	return true;
 }

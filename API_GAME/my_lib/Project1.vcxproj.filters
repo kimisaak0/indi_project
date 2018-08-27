@@ -13,15 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{14451c48-35c8-49ff-933f-a420de630ac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{8f823b2d-2a7f-435c-ad7f-04e10de7b0d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="01_header.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="02_WndC.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="03_CoreC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="05_InputC.h">
@@ -75,26 +75,32 @@
     <ClInclude Include="16_ButtonC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="17_SceneC.h">
+    <ClInclude Include="19_1_SpriteDead1C.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="18_1_SceneLobbyC.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="02_WndC.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="03_CoreC.h">
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="18_2_SceneGame.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="19_1_SpriteDead1C.h">
+    <ClInclude Include="18_1_SceneLobbyC.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="17_SceneC.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="18_3_SceneOverC.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="20_SoundMgrC.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="03_CoreC.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="02_WndC.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="05_InputC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -146,16 +152,28 @@
     <ClCompile Include="16_ButtonC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="17_SceneC.cpp">
+    <ClCompile Include="19_1_SpriteDead1C.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="18_1_SceneLobbyC.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="02_WndC.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="03_CoreC.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="18_2_SceneGame.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="19_1_SpriteDead1C.cpp">
+    <ClCompile Include="17_SceneC.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="18_1_SceneLobbyC.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="18_3_SceneOverC.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="20_SoundMgrC.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

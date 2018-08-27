@@ -4,6 +4,8 @@
 class SceneLobbyC : public SceneC
 {
 protected:
+	BgObjC m_BackGround;
+
 	ButtonC m_btnStart;
 
 public:

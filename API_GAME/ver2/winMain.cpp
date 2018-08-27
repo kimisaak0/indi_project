@@ -3,7 +3,7 @@
 
 #include "18_1_SceneLobbyC.h"
 #include "18_2_SceneGame.h"
-
+#include "18_3_SceneOverC.h"
 
 
 
@@ -16,6 +16,8 @@ class GameC : public CoreC
 
 	SceneC*    m_pLobby;
 	SceneC*    m_pGame;
+	SceneC*    m_pOver;
+	
 
 public:
 	bool    Init() override;
@@ -35,17 +37,9 @@ bool    GameC::Init()
 
 	m_pLobby = new SceneLobbyC;
 	m_pGame = new SceneGame;
-	
-	m_pScene = m_pLobby;
+	m_pOver = new SceneOverC;
 
-	switch (m_pScene->getSceneID()) {
-		case 0: {
-			//m_pScene->m_BackGround.m_iID = 0;
-		} break;
-			
-		case 1: {
-		}break;
-	}
+	m_pScene = m_pLobby;
 	
 	m_pScene->Init();
 	return true;
@@ -60,13 +54,27 @@ bool    GameC::Frame()	 // °è»ê
 			if (m_pScene->getNextScene()) {
 				m_pScene = m_pGame;
 				m_pScene->Init();
-				//m_pScene->m_BackGround.m_iID = 1;
-
 			}
 		} break;
 
 		case 1: {
-			
+			if (m_pScene->getNextScene()) {
+				m_pScene = m_pOver;
+				m_pScene->Init();
+			}
+		}break;
+
+		case 2: {
+			if (m_pScene->getNextScene()) {
+				if (m_pScene->getNextSceneID() == 0) {
+					m_pScene = m_pLobby;
+					m_pScene->Init();
+				}
+				if (m_pScene->getNextSceneID() == 1) {
+					m_pScene = m_pGame;
+					m_pScene->Init();
+				}
+			}
 		}break;
 	}
 

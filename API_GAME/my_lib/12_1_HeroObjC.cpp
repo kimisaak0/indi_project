@@ -27,6 +27,18 @@ void HeroObjC::addShort1(POINT mousePos)
 	shot1_list.push_back(shot);
 }
 
+bool HeroObjC::Init()
+{
+	CollisionObjC::Init();
+	m_rtDraw.left = 0;
+	m_dSpriteSpeed = 0;
+
+	m_dSpeedX = 0;
+	m_dSpeedY = 0;
+
+	return true;
+}
+
 bool HeroObjC::Frame()
 {
 	if (m_bExist) {

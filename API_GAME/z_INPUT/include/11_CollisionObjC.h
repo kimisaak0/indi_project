@@ -25,6 +25,8 @@ protected:
 
 public:
 	virtual void Set(double x, double y, DWORD left, DWORD top, DWORD right, DWORD bottom) override;
+
+	virtual bool Init() override;
 	virtual bool Frame() override;
 	virtual bool Render() override;
 

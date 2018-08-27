@@ -16,6 +16,10 @@ bool SceneC::getNextScene()
 	return m_bNextScene;
 }
 
+int SceneC::getNextSceneID()
+{
+	return m_iNextSceneID;
+}
 
 SceneC::~SceneC()
 {

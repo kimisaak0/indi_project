@@ -15,8 +15,6 @@ CollisionObjC::CollisionObjC()
 	m_bExist = true;
 
 	m_bMapCls = false;
-	//m_bHorCls = false;
-	//m_bVetCls = false;
 }
 
 
@@ -32,6 +30,21 @@ void CollisionObjC::Set(double x, double y, DWORD left, DWORD top, DWORD right, 
 
 }
 
+bool CollisionObjC::Init()
+{
+	m_dDirX = 1.0f;
+	m_dDirY = 1.0f;
+
+	m_dSpeedX = 0;
+	m_dSpeedY = 0;
+
+	m_bDebugRect = false;
+	m_bExist = true;
+
+	m_bMapCls = false;
+
+	return true;
+}
 
 bool CollisionObjC::Frame()
 {

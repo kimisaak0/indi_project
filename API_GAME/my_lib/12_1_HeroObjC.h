@@ -14,6 +14,7 @@ protected:
 	double m_dShotDelay;
 
 public:
+	bool Init() override;
 	bool Frame() override;
 	bool Render() override;
 	bool Release() override;

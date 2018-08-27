@@ -3,11 +3,14 @@
 
 SceneLobbyC::SceneLobbyC()
 {
-	m_iSceneID = 0;
+
 }
 
 bool	SceneLobbyC::Init()
 {
+	m_iSceneID = 0;
+	m_iNextSceneID = 0;
+
 	m_bNextScene = false;
 
 
@@ -43,8 +46,10 @@ bool	SceneLobbyC::Frame()
 
 bool	SceneLobbyC::Render()
 {
-	m_BackGround.m_iID = 0;
-
+	if (m_BackGround.m_iID == 1) {
+		m_BackGround.m_iID = 0;
+		Init();
+	}
 
 	m_BackGround.Render();
 	m_btnStart.Render();

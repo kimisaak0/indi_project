@@ -18,7 +18,7 @@ protected:
 	HeroObjC   m_Hero;
 	list<MobAC>   m_MobA_List;
 
-
+	SpriteDead1C m_dead;
 
 public:
 	virtual bool	Init();
