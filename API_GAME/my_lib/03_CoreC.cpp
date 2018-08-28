@@ -26,6 +26,7 @@ CoreC::CoreC(LPCWSTR LWndName) : WndC(LWndName)
 
 bool CoreC::gameInit()
 {
+	I_SoundMgr.Init();
 	I_Timer.Init();
 	I_Input.Init();
 	Init();
@@ -44,6 +45,7 @@ bool CoreC::gameInit()
 
 bool CoreC::gameFrame()
 {
+	I_SoundMgr.Frame();
 	I_Timer.Frame();
 	I_Input.Frame();
 	Frame();
@@ -87,6 +89,7 @@ bool CoreC::GamePostRender()
 
 bool CoreC::gameRelease()
 {
+	I_SoundMgr.Release();
 	I_Timer.Release();
 	I_Input.Release();
 	Release();

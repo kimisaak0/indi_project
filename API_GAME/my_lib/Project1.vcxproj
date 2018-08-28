@@ -103,7 +103,12 @@
     </Lib>
     <PostBuildEvent>
       <Command>copy "*.h" "../z_INPUT/include" 
-copy "*.lib" "../z_INPUT/lib"</Command>
+copy "*.hpp" "../z_INPUT/include" 
+copy "*.lib" "../z_INPUT/lib"
+copy "*.a" "../z_INPUT/lib"
+copy "*.dll" "../z_INPUT/lib"
+copy "*.cs" "../z_INPUT/lib"
+copy "*.pdb" "../z_INPUT/lib"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

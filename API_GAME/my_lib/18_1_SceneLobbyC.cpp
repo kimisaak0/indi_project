@@ -23,6 +23,8 @@ bool	SceneLobbyC::Init()
 	m_btnStart.Load(L"../z_INPUT/data/50x50/btn.bmp");
 	m_btnStart.Set(g_rtClient.right / 2, g_rtClient.bottom / 2, 0, 0, 334, 82);
 
+	I_SoundMgr.Load("../z_INPUT/data/sound/ui_sound8.ogg", false);
+
 	return true;
 }
 
@@ -34,6 +36,7 @@ bool	SceneLobbyC::Frame()
 		m_btnStart.Set(g_rtClient.right / 2, g_rtClient.bottom / 2, 0, 100, 334, 82);
 		if (I_Input.Key(VK_LBUTTON)) {
 			m_btnStart.Set(g_rtClient.right / 2, g_rtClient.bottom / 2, 0, 200, 334, 82);
+			I_SoundMgr.PlayEffect(0);
 			m_bNextScene = true;
 		}
 	}

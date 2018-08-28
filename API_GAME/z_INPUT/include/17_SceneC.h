@@ -3,6 +3,7 @@
 #include "09_1_BgObjC.h"
 #include "10_CollisionC.h"
 #include "04_TimerC.h"
+#include "20_SoundMgrC.h"
 
 class SceneC
 {

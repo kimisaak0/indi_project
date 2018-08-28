@@ -25,6 +25,8 @@ bool	SceneOverC::Init()
 	m_btnContinue.Load(L"../z_INPUT/data/50x50/ContinueBtn.bmp");
 	m_btnContinue.Set(1000, 900, 0, 0, 334, 82);
 
+	
+
 	return true;
 }
 
@@ -33,27 +35,27 @@ bool	SceneOverC::Frame()
 	m_BackGround.Frame();
 
 	if (I_ClsMgr.RectInPt(m_btnMain.getRtCls(), I_Input.m_MousePos)) {
-		m_btnMain.Set(500, 900, 0, 100, 334, 82);
+		m_btnMain.Set(g_rtClient.left + 200, g_rtClient.bottom - 100, 0, 100, 334, 82);
 		if (I_Input.Key(VK_LBUTTON)) {
-			m_btnMain.Set(500, 900, 0, 200, 334, 82);
+			m_btnMain.Set(g_rtClient.left + 200, g_rtClient.bottom - 100, 0, 200, 334, 82);
 			m_bNextScene = true;
 			m_iNextSceneID = 0;
 		}
 	}
 	else {
-		m_btnMain.Set(500, 900, 0, 0, 334, 82);
+		m_btnMain.Set(g_rtClient.left + 200, g_rtClient.bottom - 100, 0, 0, 334, 82);
 	}
 
 	if (I_ClsMgr.RectInPt(m_btnContinue.getRtCls(), I_Input.m_MousePos)) {
-		m_btnContinue.Set(1000, 900, 0, 100, 334, 82);
+		m_btnContinue.Set(g_rtClient.right - 600, g_rtClient.bottom - 100, 0, 100, 334, 82);
 		if (I_Input.Key(VK_LBUTTON)) {
-			m_btnContinue.Set(1000, 900, 0, 200, 334, 82);
+			m_btnContinue.Set(g_rtClient.right - 600, g_rtClient.bottom - 100, 0, 200, 334, 82);
 			m_bNextScene = true;
 			m_iNextSceneID = 1;
 		}
 	}
 	else {
-		m_btnContinue.Set(1000, 900, 0, 0, 334, 82);
+		m_btnContinue.Set(g_rtClient.right - 600, g_rtClient.bottom - 100, 0, 0, 334, 82);
 	}
 
 
