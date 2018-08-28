@@ -16,7 +16,11 @@ bool StatueMOC::Frame()
 	m_rtCollision.right = m_ptDrawPosition.x;
 	m_rtCollision.bottom = m_ptDrawPosition.y + m_rtDraw.bottom / 2;
 
-
+	//테스트용
+	//m_rtCollision.left = m_ptDrawPosition.x - 10;
+	//m_rtCollision.top = m_ptDrawPosition.y - m_rtDraw.bottom / 2;
+	//m_rtCollision.right = m_ptDrawPosition.x + 10;
+	//m_rtCollision.bottom = m_ptDrawPosition.y + m_rtDraw.bottom / 2;
 
 	return true;
 }
