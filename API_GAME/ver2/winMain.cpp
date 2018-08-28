@@ -61,6 +61,7 @@ bool    GameC::Frame()	 // °è»ê
 			if (m_pScene->getNextScene()) {
 				m_pScene = m_pOver;
 				m_pScene->Init();
+				I_SoundMgr.Stop(3);
 			}
 		}break;
 

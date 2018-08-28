@@ -24,6 +24,8 @@ void HeroObjC::addShort1(POINT mousePos)
 
 	shot.setSpeed(dx/distance, dy/distance);
 
+	I_SoundMgr.PlayEffect(1);
+
 	shot1_list.push_back(shot);
 }
 

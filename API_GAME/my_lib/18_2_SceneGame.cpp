@@ -18,6 +18,8 @@ bool	SceneGame::Init()
 
 	srand((unsigned)GetTickCount());
 
+	I_SoundMgr.Play(3, true, true);
+
 	m_BackGround.Load(L"../z_INPUT/data/50x50/watar_tileset.bmp");
 	m_BackGround.Set(0, 0, 0, 0, 50, 50);
 
@@ -116,6 +118,7 @@ bool	SceneGame::Frame()
 		for (shot1It = m_Hero.shot1_list.begin(); shot1It != m_Hero.shot1_list.end(); shot1It++) {
 			if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), shot1It->getRtCls())) {
 				if (shot1It->getExist()) {
+					I_SoundMgr.PlayEffect(2);
 					MobAIt->setExist(false);
 					//m_dead.Set(MobAIt->getPt().x, MobAIt->getPt().y, 0, 0, 150, 150);
 					//m_dead.Render();
@@ -174,6 +177,8 @@ bool	SceneGame::Render()
 
 bool	SceneGame::Release()
 {
+	
+
 	m_BackGround.Release();
 	m_Hero.Release();
 

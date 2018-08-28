@@ -38,7 +38,11 @@ bool CoreC::gameInit()
 	m_hBrBack = CreateSolidBrush(bgColor);
 	SelectObject(m_hOffScreenDC, m_hBrBack);
 
-	
+	I_SoundMgr.Load("../z_INPUT/data/sound/ui_sound8.ogg", false);
+	I_SoundMgr.Load("../z_INPUT/data/sound/weapon_sound2.ogg", false);
+	I_SoundMgr.Load("../z_INPUT/data/sound/Vampire_Bite.mp3",false);
+
+	I_SoundMgr.Load("../z_INPUT/data/sound/Yung_Kartz_10_1400.mp3", false);
 
 	return true;
 }
