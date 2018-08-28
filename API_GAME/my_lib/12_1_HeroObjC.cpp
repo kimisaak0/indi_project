@@ -81,6 +81,7 @@ bool HeroObjC::Frame()
 			shot1It->Frame();
 		}
 
+
 		//노 젓는 스프라이트
 		m_dSpriteSpeed += g_dSecPerFrame * 0.1;
 

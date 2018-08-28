@@ -7,6 +7,8 @@
 #include <tchar.h>
 #include <math.h>
 
+#include <algorithm>
+using std::for_each;
 
 #include <iostream>
 
