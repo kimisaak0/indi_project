@@ -65,6 +65,7 @@ bool HeroObjC::Frame()
 			}
 		}
 
+
 		//소나를 킵니다.
 		if (I_Input.Key('R') == KEY_DOWN) {
 			//makeSona();
