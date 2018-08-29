@@ -169,7 +169,7 @@ bool	SceneGame::Frame()
 
 		for (int kObj = 0; kObj < g_MaxRock; kObj++) {
 			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
-				shot1It->setExist(false);
+				//shot1It->setExist(false);
 			}
 		}
 

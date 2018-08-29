@@ -100,8 +100,8 @@ bool MobAC::Frame()
 				double dy = m_ptDest.y - m_ptPosition.y;
 				double distance = sqrt(pow(dx, 2) + pow(dy, 2));
 
-				m_dSpeedX = dx / distance;
-				m_dSpeedY = dy / distance;
+				m_dSpeedX = abs(dx) / distance;
+				m_dSpeedY = abs(dy) / distance;
 
 				m_dDirX = (dx > 0) ? +1 : -1;
 				m_dDirY = (dy > 0) ? +1 : -1;
@@ -109,7 +109,7 @@ bool MobAC::Frame()
 				m_ptPosition.x += m_dDirX * m_dSpeedX * g_dSecPerFrame * 100;
 				m_ptPosition.y += m_dDirY * m_dSpeedY * g_dSecPerFrame * 100;
 				
-				if (abs(dx) < 0.001 && abs(dy) < 0.001) {
+				if (abs(dx) < 0.1 && abs(dy) < 0.1) {
 					m_iFSMid = 0;
 				}
 
