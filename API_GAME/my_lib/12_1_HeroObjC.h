@@ -14,18 +14,20 @@ protected:
 
 	double m_dShotDelay;
 
-	sonaC  m_sona;
+	
 	bool   m_bSonaSw;
 
 public:
+	sonaC  m_sona;
+
 	bool Init() override;
 	bool Frame() override;
 	bool Render() override;
 	bool Release() override;
 
 	void addShort1(POINT mousePos);
-/*
-	void makeSona();*/
+
+	bool getSonaSw();
 
 	list<shot1C> shot1_list;
 

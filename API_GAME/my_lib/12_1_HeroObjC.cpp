@@ -17,10 +17,11 @@ void HeroObjC::addShort1(POINT mousePos)
 	shot.Init();
 	shot.Load(L"../z_INPUT/data/50x50/shot1.bmp");
 	shot.Set(m_ptPosition.x, m_ptPosition.y, 20, 85, 30, 30);
+	shot.setSpawn(m_ptPosition.x, m_ptPosition.y);
 
 	double dx = mousePos.x - m_ptPosition.x;
 	double dy = mousePos.y - m_ptPosition.y;
-	int distance = sqrt(pow(dx, 2) + pow(dy, 2));
+	double distance = sqrt(pow(dx, 2) + pow(dy, 2));
 
 	shot.setSpeed(dx/distance, dy/distance);
 
@@ -59,7 +60,7 @@ bool HeroObjC::Frame()
 {
 	if (m_bExist) {
 		//ÃÑÀ» ½õ´Ï´Ù!
-		if (I_Input.Key(VK_LBUTTON)) {
+		if (I_Input.Key('Q')) {
 			m_dShotDelay += g_dSecPerFrame;
 			if (m_dShotDelay >= 0.1) {
 				addShort1(I_Input.m_MousePos);
@@ -74,8 +75,10 @@ bool HeroObjC::Frame()
 			m_bSonaSw = !m_bSonaSw;
 		}
 
-		m_sona.setPos(m_ptDrawPosition);
-		m_sona.Frame();
+		if (m_bSonaSw) {
+			m_sona.setPos(m_ptDrawPosition);
+			m_sona.Frame();
+		}
 		
 
 		list<shot1C>::iterator shot1It;
@@ -283,6 +286,11 @@ bool HeroObjC::Release()
 	CollisionObjC::Release();
 
 	return true;
+}
+
+bool HeroObjC::getSonaSw()
+{
+	return m_bSonaSw;
 }
 
 HeroObjC::~HeroObjC()

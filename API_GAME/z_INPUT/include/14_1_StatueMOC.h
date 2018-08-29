@@ -4,7 +4,8 @@
 class StatueMOC : public MapObjC
 {
 private:
-	int m_iHP;
+	int m_iMaxHp;
+	int m_iCurrentHP;
 
 public:
 	int Hit();

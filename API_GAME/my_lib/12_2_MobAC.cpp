@@ -7,7 +7,7 @@ MobAC::MobAC()
 {
 	m_rtDraw.left = 0;
 	m_dSpriteSpeed = 0;
-	m_iSpriteIndex = 0;
+//	m_iSpriteIndex = 0;
 	
 	m_dDirChg = 0;
 	m_dMoveCycleSpeed = 0;
@@ -20,7 +20,20 @@ MobAC::MobAC()
 
 	m_iId = g_maxId++;
 
-	m_dead.Load(L"../z_INPUT/data/50x50/explosion01.bmp");
+	m_iMaxHp = 10;
+	m_iCurrentHP = m_iMaxHp;
+
+	m_iFSMid = 0;
+}
+
+int MobAC::Hit()
+{
+	if (m_iCurrentHP > 0) {
+		return --m_iCurrentHP;
+	}
+	else {
+		return 0;
+	}
 }
 
 bool MobAC::Init()
@@ -28,7 +41,7 @@ bool MobAC::Init()
 	CollisionObjC::Init();
 	m_rtDraw.left = 0;
 	m_dSpriteSpeed = 0;
-	m_iSpriteIndex = 0;
+//	m_iSpriteIndex = 0;
 
 	m_dDirChg = 0;
 	m_dMoveCycleSpeed = 0;
@@ -41,14 +54,16 @@ bool MobAC::Init()
 
 	m_iId = g_maxId++;
 
-	m_dead.Load(L"../z_INPUT/data/50x50/explosion01.bmp");
-
 	return true;
 }
 
 bool MobAC::Frame()
 {
 	if (m_bExist) {
+
+		if (m_iCurrentHP <= 0) {
+			m_bExist = false;
+		}
 
 		//날개짓 파닥파닥
 		m_dSpriteSpeed += g_dSecPerFrame * 0.1;
@@ -62,38 +77,61 @@ bool MobAC::Frame()
 			}
 		}
 
-		//방향 전환 8방향!
-		m_dDirChg += g_dSecPerFrame * 0.1;
-		if (m_dDirChg > 0.5) {
-			m_dDirChg = 0;
+		switch (m_iFSMid) {
+			case 0: { //패턴 0 (자유이동)
+				//방향 전환 8방향!
+				m_dDirChg += g_dSecPerFrame * 0.1;
+				if (m_dDirChg > 0.5) {
+					m_dDirChg = 0;
 
-			m_dDirX = (rand() % 2) ? +1 : -1;
-			m_dDirY = (rand() % 2) ? +1 : -1;
+					m_dDirX = (rand() % 2) ? +1 : -1;
+					m_dDirY = (rand() % 2) ? +1 : -1;
 
-			if (m_dDirX == 1) {
-				if (m_dDirY == 1) {
-					m_dSpeedX <= m_dSpeedY ? m_rtDraw.top = 64 : m_rtDraw.top = 0;
+					m_dSpeedX = rand() % 30 + 15;
+					m_dSpeedY = rand() % 30 + 15;
 				}
-				else {
-					m_dSpeedX <= m_dSpeedY ? m_rtDraw.top = 64 : m_rtDraw.top = 96;
-				}
-			}
-			else {
-				if (m_dDirY == 1) {
-					m_dSpeedX <= m_dSpeedY ? m_rtDraw.top = 32 : m_rtDraw.top = 0;
-				}
-				else {
-					m_dSpeedX <= m_dSpeedY ? m_rtDraw.top = 32 : m_rtDraw.top = 96;
-				}
-			}
 
-			m_dSpeedX = rand() % 30 + 15;
-			m_dSpeedY = rand() % 30 + 15;
+				m_ptPosition.x += m_dDirX * m_dSpeedX * g_dSecPerFrame;
+				m_ptPosition.y += m_dDirY * m_dSpeedY * g_dSecPerFrame;
+			}; break; 
+
+			case 1: { //패턴 1 (추적)
+				double dx = m_ptDest.x - m_ptPosition.x;
+				double dy = m_ptDest.y - m_ptPosition.y;
+				double distance = sqrt(pow(dx, 2) + pow(dy, 2));
+
+				m_dSpeedX = dx / distance;
+				m_dSpeedY = dy / distance;
+
+				m_dDirX = (dx > 0) ? +1 : -1;
+				m_dDirY = (dy > 0) ? +1 : -1;
+
+				m_ptPosition.x += m_dDirX * m_dSpeedX * g_dSecPerFrame * 100;
+				m_ptPosition.y += m_dDirY * m_dSpeedY * g_dSecPerFrame * 100;
+				
+				if (abs(dx) < 0.001 && abs(dy) < 0.001) {
+					m_iFSMid = 0;
+				}
+
+			} break;
 		}
 
-		m_ptPosition.x += m_dDirX * m_dSpeedX * g_dSecPerFrame;
-		m_ptPosition.y += m_dDirY * m_dSpeedY * g_dSecPerFrame;
-
+		if (m_dDirX == 1) {
+			if (m_dDirY == 1) {
+				m_dSpeedX <= m_dSpeedY ? m_rtDraw.top = 64 : m_rtDraw.top = 0;
+			}
+			else {
+				m_dSpeedX <= m_dSpeedY ? m_rtDraw.top = 64 : m_rtDraw.top = 96;
+			}
+		}
+		else {
+			if (m_dDirY == 1) {
+				m_dSpeedX <= m_dSpeedY ? m_rtDraw.top = 32 : m_rtDraw.top = 0;
+			}
+			else {
+				m_dSpeedX <= m_dSpeedY ? m_rtDraw.top = 32 : m_rtDraw.top = 96;
+			}
+		}
 
 		//화면 밖으로 나가지마!
 		if (m_rtCollision.right > g_rtClient.right)
@@ -118,7 +156,7 @@ bool MobAC::Frame()
 		}
 
 
-		//맵 오브젝트랑 부딪혔다! 밀어내기 (살짝 버그 있음)
+		//맵 오브젝트랑 부딪혔다! 밀어내기 
 		if (m_bMapCls) {
 			int iOverW = m_rtOverlap.right - m_rtOverlap.left; //충돌한 넓이
 			int iOverH = m_rtOverlap.bottom - m_rtOverlap.top; //충돌한 높이
@@ -156,25 +194,6 @@ bool MobAC::Frame()
 					m_ptPosition.y -= iOverH;
 				}
 			}
-		
-			//if (m_rtCollision.right >= m_rtMapObj.left && m_rtCollision.left <= m_rtMapObj.right) {
-			//	if (m_dDirY > 0) { //위에서 부딪힘
-
-			//		m_ptPosition.y -= iOverH;
-			//	}
-			//	else {             //아래에서 부딪힘.
-			//		m_ptPosition.y += iOverH;
-			//	}
-			//}
-			//
-			//if (m_rtCollision.bottom >= m_rtMapObj.top && m_rtCollision.top <= m_rtMapObj.bottom) {
-			//	if (m_dDirX > 0) { //왼쪽에서 부딪힘
-			//		m_ptPosition.x -= iOverW;
-			//	}
-			//	else {             //오른쪽에서 부딪힘
-			//		m_ptPosition.x += iOverW;
-			////	}
-			//}
 
   			m_dDirX *= -1.0f;
 			m_dDirY *= -1.0f;
@@ -188,10 +207,6 @@ bool MobAC::Frame()
 		CollisionObjC::Frame();
 
 	}
-	else {
-		
-		m_dead.Frame();
-	}
 
 	return true;
 }
@@ -199,6 +214,19 @@ bool MobAC::Frame()
 bool MobAC::Render()
 {
 	if (m_bExist) {
+		//HP바 그리기
+		HBRUSH myBrush = (HBRUSH)GetStockObject(DC_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(g_hOffScreenDC, myBrush);
+
+		SetDCBrushColor(g_hOffScreenDC, RGB(255, 0, 0));
+
+		Rectangle(g_hOffScreenDC, m_ptPosition.x, m_ptPosition.y - 7, m_ptPosition.x + (m_iCurrentHP * 100 / m_iMaxHp) * 0.3, m_ptPosition.y - 2);
+
+		SelectObject(g_hOffScreenDC, oldBrush);
+		DeleteObject(myBrush);
+
+
+		//물체 그리기
 		TransparentBlt(g_hOffScreenDC,
 			m_ptPosition.x, m_ptPosition.y,
 			m_rtDraw.right, m_rtDraw.bottom,
@@ -210,10 +238,7 @@ bool MobAC::Render()
 
 		CollisionObjC::Render();
 	}
-	else {
-		m_dead.Set(m_ptPosition.x, m_ptPosition.y, 0, 0, 150, 150);
-		m_dead.Render();
-	}
+
 	return true;
 }
 
@@ -223,9 +248,19 @@ dPointC MobAC::getPt()
 	return m_ptPosition;
 }
 
+void MobAC::setFSM(int id)
+{
+	m_iFSMid = id;
+}
+
+void MobAC::setDest(dPointC pt)
+{
+	m_ptDest = pt;
+}
+
 
 
 MobAC::~MobAC()
 {
-	m_dead.Release();
+
 }

@@ -19,14 +19,17 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{8f823b2d-2a7f-435c-ad7f-04e10de7b0d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Base">
-      <UniqueIdentifier>{cc539110-f878-4292-af50-7cb99d9a69d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ObjC">
       <UniqueIdentifier>{762832c5-4bdd-42b3-a781-ff24765d649d}</UniqueIdentifier>
     </Filter>
     <Filter Include="CollisionObjC">
       <UniqueIdentifier>{3ad42051-85fb-490a-a870-9cb75227a5e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{a5d505f7-4157-4723-bc7d-73d0423d1b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mgr">
+      <UniqueIdentifier>{cc539110-f878-4292-af50-7cb99d9a69d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49,25 +52,25 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="01_header.h">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClInclude>
     <ClInclude Include="04_TimerC.h">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClInclude>
     <ClInclude Include="05_InputC.h">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClInclude>
     <ClInclude Include="06_BmpC.h">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClInclude>
     <ClInclude Include="07_BmpMgrC.h">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClInclude>
     <ClInclude Include="10_CollisionC.h">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClInclude>
     <ClInclude Include="20_SoundMgrC.h">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClInclude>
     <ClInclude Include="08_ObjC.h">
       <Filter>ObjC</Filter>
@@ -76,9 +79,6 @@
       <Filter>ObjC</Filter>
     </ClInclude>
     <ClInclude Include="09_3_UIObjC.h">
-      <Filter>ObjC</Filter>
-    </ClInclude>
-    <ClInclude Include="19_1_SpriteDead1C.h">
       <Filter>ObjC</Filter>
     </ClInclude>
     <ClInclude Include="13_1MouseObjC.h">
@@ -111,6 +111,15 @@
     <ClInclude Include="21_sonaC.h">
       <Filter>CollisionObjC</Filter>
     </ClInclude>
+    <ClInclude Include="19_1_SpriteDead1C.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="19_0_EffectC.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="22_EffectMgrC.h">
+      <Filter>Mgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="02_WndC.cpp">
@@ -132,22 +141,22 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="04_TimerC.cpp">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClCompile>
     <ClCompile Include="05_InputC.cpp">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClCompile>
     <ClCompile Include="06_BmpC.cpp">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClCompile>
     <ClCompile Include="07_BmpMgrC.cpp">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClCompile>
     <ClCompile Include="20_SoundMgrC.cpp">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClCompile>
     <ClCompile Include="10_CollisionC.cpp">
-      <Filter>Base</Filter>
+      <Filter>Mgr</Filter>
     </ClCompile>
     <ClCompile Include="08_ObjC.cpp">
       <Filter>ObjC</Filter>
@@ -159,9 +168,6 @@
       <Filter>ObjC</Filter>
     </ClCompile>
     <ClCompile Include="13_1MouseObjC.cpp">
-      <Filter>ObjC</Filter>
-    </ClCompile>
-    <ClCompile Include="19_1_SpriteDead1C.cpp">
       <Filter>ObjC</Filter>
     </ClCompile>
     <ClCompile Include="11_CollisionObjC.cpp">
@@ -190,6 +196,15 @@
     </ClCompile>
     <ClCompile Include="21_sonaC.cpp">
       <Filter>CollisionObjC</Filter>
+    </ClCompile>
+    <ClCompile Include="19_0_EffectC.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="19_1_SpriteDead1C.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="22_EffectMgrC.cpp">
+      <Filter>Mgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

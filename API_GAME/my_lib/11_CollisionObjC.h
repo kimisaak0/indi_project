@@ -6,7 +6,7 @@
 class CollisionObjC : public ObjC
 {
 protected:
-	RECT      m_rtCollision;
+	RECT      m_rtCollision;   //충돌 사각형
 	
 	double    m_dDirX;        //x 방향값 : 좌(-1), 우(+1)
 	double    m_dDirY;        //y 방향값 : 상(-1), 하(+1)

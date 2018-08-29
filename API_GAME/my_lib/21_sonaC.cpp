@@ -66,7 +66,19 @@ bool sonaC::Render()
 		RGB(255, 255, 255)
 	);
 
-	CollisionObjC::Render();
+
+	//충돌박스 그리기
+	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	HBRUSH oldBrush = (HBRUSH)SelectObject(g_hOffScreenDC, myBrush);
+
+	Ellipse(g_hOffScreenDC,
+		m_rtCollision.left,
+		m_rtCollision.top,
+		m_rtCollision.right,
+		m_rtCollision.bottom);
+
+	SelectObject(g_hOffScreenDC, oldBrush);
+	DeleteObject(myBrush);
 
 	return true;
 }

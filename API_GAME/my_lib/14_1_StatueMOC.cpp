@@ -1,6 +1,22 @@
 #pragma once
 #include "14_1_StatueMOC.h"
 
+StatueMOC::StatueMOC()
+{
+	m_iMaxHp = 10000;
+	m_iCurrentHP = m_iMaxHp;
+}
+
+int StatueMOC::Hit()
+{
+	if (m_iCurrentHP > 0) {
+		return --m_iCurrentHP;
+	}
+	else {
+		return 0;
+	}
+}
+
 bool StatueMOC::Frame()
 {
 	if (I_Input.Key('9') == KEY_DOWN) {
@@ -21,6 +37,34 @@ bool StatueMOC::Frame()
 	//m_rtCollision.top = m_ptDrawPosition.y - m_rtDraw.bottom / 2;
 	//m_rtCollision.right = m_ptDrawPosition.x + 10;
 	//m_rtCollision.bottom = m_ptDrawPosition.y + m_rtDraw.bottom / 2;
+
+	return true;
+}
+
+bool StatueMOC::Render()
+{
+	if (m_bExist) {
+		//HP바 그리기
+		HBRUSH myBrush = (HBRUSH)GetStockObject(DC_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(g_hOffScreenDC, myBrush);
+
+		SetDCBrushColor(g_hOffScreenDC, RGB(255,0,0));
+
+		Rectangle(g_hOffScreenDC, m_ptPosition.x, m_ptPosition.y-7, m_ptPosition.x+(m_iCurrentHP*100/m_iMaxHp), m_ptPosition.y - 2);
+
+		SelectObject(g_hOffScreenDC, oldBrush);
+		DeleteObject(myBrush);
+
+		//물체 그리기
+		TransparentBlt(g_hOffScreenDC,
+			m_ptPosition.x, m_ptPosition.y,
+			m_rtDraw.right, m_rtDraw.bottom,
+			m_pColorBmp->m_hMemDC,
+			m_rtDraw.left, m_rtDraw.top,
+			m_rtDraw.right, m_rtDraw.bottom,
+			RGB(255, 255, 255)
+		);
+	}
 
 	return true;
 }

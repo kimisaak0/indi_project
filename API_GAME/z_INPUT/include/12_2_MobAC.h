@@ -1,6 +1,5 @@
 #pragma once
 #include "11_CollisionObjC.h"
-#include "19_1_SpriteDead1C.h"
 
 class MobAC : public CollisionObjC
 {
@@ -8,13 +7,18 @@ protected:
 	static int  g_maxId;
 	int         m_iId;
 
-	double      m_dSpriteSpeed;
-	int         m_iSpriteIndex;
+	int         m_iMaxHp;           //최대 HP
+	int         m_iCurrentHP;       //현재 HP
 
-	double      m_dDirChg;
-	double      m_dMoveCycleSpeed;
+	double      m_dSpriteSpeed;    //스프라이트 속도
+//	int         m_iSpriteIndex;
 
-	SpriteDead1C m_dead;
+	double      m_dDirChg;         //이게 차면 이동방향을 바꿈
+	double      m_dMoveCycleSpeed; //이동 방향을 바꾸는 주기
+
+	int         m_iFSMid;
+
+	dPointC     m_ptDest;
 
 public:
 	bool Init() override;
@@ -23,6 +27,10 @@ public:
 
 	dPointC getPt();
 
+	int Hit();
+
+	void setFSM(int id);
+	void setDest(dPointC pt);
 
 public:
 	MobAC();

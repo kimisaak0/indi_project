@@ -51,7 +51,13 @@ bool	SceneGame::Init()
 		m_Rock1_List[iObj].Set(rand() % (g_rtClient.right - 200) + 100, rand() % (g_rtClient.bottom - 200) + 100, 21, 7, 48, 48);
 	}
 
-	m_dead.Load(L"../z_INPUT/data/50x50/explosion01.bmp");
+
+	EffectC* DeadEffect = new SpriteDead1C;
+	DeadEffect->Load(L"../z_INPUT/data/50x50/explosion01.bmp");
+	DeadEffect->Set(0, 0, 0, 0, 150, 150);
+	
+	I_EffectMgr.Load(DeadEffect);
+
 	return true;
 }
 
@@ -98,13 +104,24 @@ bool	SceneGame::Frame()
 
 	//몹1 관련 충돌
 	for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
+		//주인공이랑 부딪히면 주인공이 다이
 		if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_Hero.getRtCls())) {
-			if (g_dGameTimer > 5) {
+			MobAIt->setFSM(0); //FSM은 0으로
+			if (g_dGameTimer > 10000000) {
 				m_Hero.setExist(false);
 				m_bNextScene = true;
 			}
 		}
 
+		//소나를 맞으면 행동 패턴 1로 변환
+		if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_Hero.m_sona.getRtCls())) {
+			if (m_Hero.getSonaSw()) {
+				MobAIt->setFSM(1);
+			}
+		}
+
+
+		//장애물과 부딪히면 밀려남
 		if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_statue.getRtCls())) {
 			MobAIt->setMapCls(true, m_statue.getRtCls());
 		}
@@ -115,20 +132,27 @@ bool	SceneGame::Frame()
 			}
 		}
 
+		//총알과 부딪히면 몹의 에너지가 담
 		for (shot1It = m_Hero.shot1_list.begin(); shot1It != m_Hero.shot1_list.end(); shot1It++) {
 			if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), shot1It->getRtCls())) {
 				if (shot1It->getExist()) {
+					MobAIt->setFSM(1); //행동패턴은 1로 변환
 					I_SoundMgr.PlayEffect(2);
-					MobAIt->setExist(false);
-					//m_dead.Set(MobAIt->getPt().x, MobAIt->getPt().y, 0, 0, 150, 150);
-					//m_dead.Render();
+					MobAIt->Hit();
+					MobAIt->setDest(shot1It->getSpawn());
+
+					dPointC pos;
+					pos.x = MobAIt->getPt().x;
+					pos.y = MobAIt->getPt().y;
+					m_Effect_pos.push_back(pos);
 				}
 			}
 		}
+
+
 	}
 
 	//shot1 관련 충돌
-
 	for (shot1It = m_Hero.shot1_list.begin(); shot1It != m_Hero.shot1_list.end(); shot1It++) {
 		for (MobAIt = m_MobA_List.begin(); MobAIt != m_MobA_List.end(); MobAIt++) {
 			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), MobAIt->getRtCls())) {
@@ -150,6 +174,8 @@ bool	SceneGame::Frame()
 		}
 
 	}
+
+
 
 	return true;
 }
@@ -173,6 +199,15 @@ bool	SceneGame::Render()
 
 	for (int iObj = 0; iObj < g_MaxRock; iObj++) {
 		m_Rock1_List[iObj].Render();
+	}
+
+	//아마도 empty가 비어있는 상태가 되면 더 이상 렌더링을 하지 않기 때문에 깜빡이는 것으로 생각됨.
+	if (!m_Effect_pos.empty()) {
+		double x = m_Effect_pos.front().x;
+		double y = m_Effect_pos.front().y;
+		I_EffectMgr.Play(0, x, y);
+
+		m_Effect_pos.pop_front();
 	}
 
 	return true;

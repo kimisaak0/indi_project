@@ -188,10 +188,12 @@ copy "*.pdb" "../z_INPUT/lib"</Command>
     <ClInclude Include="17_SceneC.h" />
     <ClInclude Include="18_1_SceneLobbyC.h" />
     <ClInclude Include="18_2_SceneGame.h" />
+    <ClInclude Include="19_0_EffectC.h" />
     <ClInclude Include="19_1_SpriteDead1C.h" />
     <ClInclude Include="18_3_SceneOverC.h" />
     <ClInclude Include="20_SoundMgrC.h" />
     <ClInclude Include="21_sonaC.h" />
+    <ClInclude Include="22_EffectMgrC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="03_CoreC.cpp" />
@@ -217,9 +219,11 @@ copy "*.pdb" "../z_INPUT/lib"</Command>
     <ClCompile Include="18_1_SceneLobbyC.cpp" />
     <ClCompile Include="18_2_SceneGame.cpp" />
     <ClCompile Include="18_3_SceneOverC.cpp" />
+    <ClCompile Include="19_0_EffectC.cpp" />
     <ClCompile Include="19_1_SpriteDead1C.cpp" />
     <ClCompile Include="20_SoundMgrC.cpp" />
     <ClCompile Include="21_sonaC.cpp" />
+    <ClCompile Include="22_EffectMgrC.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

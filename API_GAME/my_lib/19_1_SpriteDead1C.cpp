@@ -32,20 +32,19 @@ bool SpriteDead1C::Frame()
 
 bool SpriteDead1C::Render()
 {
-	if (m_bExist) {
-		TransparentBlt(g_hOffScreenDC,
-			m_ptPosition.x, m_ptPosition.y,
-			32, 32,
-			m_pColorBmp->m_hMemDC,
-			m_rtDraw.left, m_rtDraw.top,
-			m_rtDraw.right, m_rtDraw.bottom,
-			RGB(255, 255, 255)
-		);
-	}
+	TransparentBlt(g_hOffScreenDC,
+		m_ptPosition.x, m_ptPosition.y,
+		100, 100,
+		m_pColorBmp->m_hMemDC,
+		m_rtDraw.left, m_rtDraw.top,
+		m_rtDraw.right, m_rtDraw.bottom,
+		RGB(255, 255, 255)
+	);
 
 	return true;
 
 }
+
 
 SpriteDead1C::~SpriteDead1C()
 {

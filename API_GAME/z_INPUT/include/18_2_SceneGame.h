@@ -7,6 +7,8 @@
 #include "14_1_StatueMOC.h"
 #include "14_2_Rock1MOC.h"
 
+#include "19_1_SpriteDead1C.h"
+
 class SceneGame : public SceneC
 {
 protected:
@@ -18,7 +20,7 @@ protected:
 	HeroObjC   m_Hero;
 	list<MobAC>   m_MobA_List;
 
-	SpriteDead1C m_dead;
+	list<dPointC> m_Effect_pos;
 
 public:
 	virtual bool	Init();

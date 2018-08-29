@@ -4,6 +4,7 @@
 #include "10_CollisionC.h"
 #include "04_TimerC.h"
 #include "20_SoundMgrC.h"
+#include "22_EffectMgrC.h"
 
 class SceneC
 {

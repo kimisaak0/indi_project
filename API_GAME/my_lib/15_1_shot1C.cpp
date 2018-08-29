@@ -13,6 +13,15 @@ void shot1C::setSpeed(double sx, double sy)
 
 }
 
+void shot1C::setSpawn(double sx, double sy)
+{
+	m_ptSpawnPos.x = sx;
+	m_ptSpawnPos.y = sy;
+}
+
+
+
+
 
 bool shot1C::Frame()
 {
@@ -41,8 +50,6 @@ bool shot1C::Frame()
 			m_bExist = false;
 		}
 	}
-
-
 	return true;
 }
 
@@ -59,4 +66,9 @@ bool shot1C::Render()
 		);
 	}
 	return true;
+}
+
+dPointC shot1C::getSpawn()
+{
+	return m_ptSpawnPos;
 }
