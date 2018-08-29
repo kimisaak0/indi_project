@@ -24,6 +24,8 @@ void HeroObjC::addShort1(POINT mousePos)
 
 	shot.setSpeed(dx/distance, dy/distance);
 
+	I_SoundMgr.PlayEffect(1);
+
 	shot1_list.push_back(shot);
 }
 
@@ -163,24 +165,57 @@ bool HeroObjC::Frame()
 			int iOverW = m_rtOverlap.right - m_rtOverlap.left; //충돌한 넓이
 			int iOverH = m_rtOverlap.bottom - m_rtOverlap.top; //충돌한 높이
 
-			if (m_rtCollision.right >= m_rtMapObj.left && m_rtCollision.left <= m_rtMapObj.right) {
-				if (m_dDirY > 0) { //위에서 부딪힘
+			dPointC ptObjM;
+			ptObjM.x = (m_rtMapObj.right + m_rtMapObj.left) / 2;
+			ptObjM.y = (m_rtMapObj.bottom + m_rtMapObj.top) / 2;
 
-					m_ptPosition.y -= iOverH;
-				}
-				else {             //아래에서 부딪힘.
+			dPointC CollDir;
+			CollDir.x = m_ptDrawPosition.x - ptObjM.x;
+			CollDir.y = m_ptDrawPosition.y - ptObjM.y;
+
+			dPointC delta;
+			delta.x = m_rtMapObj.right - m_rtMapObj.left;
+			delta.y = m_rtMapObj.bottom - m_rtMapObj.top;
+
+			if (CollDir.x * delta.y < CollDir.y * delta.x) {
+				if (-(CollDir.x) * delta.y < CollDir.y * delta.x) {
+					//아래에서 위로 충돌
 					m_ptPosition.y += iOverH;
 				}
-			}
-
-			if (m_rtCollision.bottom >= m_rtMapObj.top && m_rtCollision.top <= m_rtMapObj.bottom) {
-				if (m_dDirX > 0) { //왼쪽에서 부딪힘
+				else {
+					//왼쪽에서 오른쪽으로 충돌
 					m_ptPosition.x -= iOverW;
 				}
-				else {             //오른쪽에서 부딪힘
+			}
+			else {
+				if (-(CollDir.x)*delta.y < CollDir.y * delta.x) {
+					//오른쪽에서 왼쪽으로
 					m_ptPosition.x += iOverW;
 				}
+				else {
+					//위에서 아래로
+					m_ptPosition.y -= iOverH;
+				}
 			}
+
+
+			//if (m_rtCollision.right >= m_rtMapObj.left && m_rtCollision.left <= m_rtMapObj.right) {
+			//	if (m_dDirY > 0) { //위에서 부딪힘
+			//		m_ptPosition.y -= iOverH;
+			//	}
+			//	else {             //아래에서 부딪힘.
+			//		m_ptPosition.y += iOverH;
+			//	}
+			//}
+
+			//if (m_rtCollision.bottom >= m_rtMapObj.top && m_rtCollision.top <= m_rtMapObj.bottom) {
+			//	if (m_dDirX > 0) { //왼쪽에서 부딪힘
+			//		m_ptPosition.x -= iOverW;
+			//	}
+			//	else {             //오른쪽에서 부딪힘
+			//		m_ptPosition.x += iOverW;
+			//	}
+			//}
 
 			m_dDirX *= -1.0f;
 			m_dDirY *= -1.0f;
