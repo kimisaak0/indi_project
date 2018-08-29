@@ -133,8 +133,11 @@ bool	SceneGame::Frame()
 			}
 		}
 
-		if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_statue.getRtCls())) {
-			shot1It->setExist(false);
+		if (m_statue.getExist()) {
+			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_statue.getRtCls())) {
+				shot1It->setExist(false);
+				m_statue.Hit();
+			}
 		}
 
 		for (int kObj = 0; kObj < g_MaxRock; kObj++) {

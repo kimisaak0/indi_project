@@ -3,6 +3,16 @@
 
 class StatueMOC : public MapObjC
 {
+private:
+	int m_iHP;
+
 public:
-	virtual bool Frame() override;
+	int Hit();
+
+public:
+	bool Frame() override;
+	bool Render() override;
+
+public:
+	StatueMOC();
 };

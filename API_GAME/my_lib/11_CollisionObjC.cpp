@@ -72,11 +72,19 @@ bool CollisionObjC::Render()
 	if (m_bDebugRect)
 	{
 		//int prevMode = SetROP2(g_hOffScreenDC, R2_XORPEN);
+
+		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(g_hOffScreenDC, myBrush);
+
 		Rectangle(g_hOffScreenDC,
 			m_rtCollision.left,
 			m_rtCollision.top,
 			m_rtCollision.right,
 			m_rtCollision.bottom);
+
+		SelectObject(g_hOffScreenDC, oldBrush);
+		DeleteObject(myBrush);
+
 		//SetROP2(g_hOffScreenDC, prevMode);
 	}
 	return true;
