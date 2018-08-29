@@ -1,6 +1,7 @@
 #pragma once
 #include "07_BmpMgrC.h"
 #include "05_InputC.h"
+#include "20_SoundMgrC.h"
 
 
 #define LR_ROTATION 0x01

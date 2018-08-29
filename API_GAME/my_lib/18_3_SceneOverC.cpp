@@ -38,6 +38,7 @@ bool	SceneOverC::Frame()
 		m_btnMain.Set(g_rtClient.left + 200, g_rtClient.bottom - 100, 0, 100, 334, 82);
 		if (I_Input.Key(VK_LBUTTON)) {
 			m_btnMain.Set(g_rtClient.left + 200, g_rtClient.bottom - 100, 0, 200, 334, 82);
+			I_SoundMgr.PlayEffect(0);
 			m_bNextScene = true;
 			m_iNextSceneID = 0;
 		}
@@ -50,6 +51,7 @@ bool	SceneOverC::Frame()
 		m_btnContinue.Set(g_rtClient.right - 600, g_rtClient.bottom - 100, 0, 100, 334, 82);
 		if (I_Input.Key(VK_LBUTTON)) {
 			m_btnContinue.Set(g_rtClient.right - 600, g_rtClient.bottom - 100, 0, 200, 334, 82);
+			I_SoundMgr.PlayEffect(0);
 			m_bNextScene = true;
 			m_iNextSceneID = 1;
 		}
