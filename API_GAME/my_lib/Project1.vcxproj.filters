@@ -51,9 +51,6 @@
     <ClInclude Include="18_3_SceneOverC.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="01_header.h">
-      <Filter>Mgr</Filter>
-    </ClInclude>
     <ClInclude Include="04_TimerC.h">
       <Filter>Mgr</Filter>
     </ClInclude>
@@ -119,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="22_EffectMgrC.h">
       <Filter>Mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="01_header.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

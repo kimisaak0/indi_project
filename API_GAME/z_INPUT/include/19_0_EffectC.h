@@ -6,6 +6,8 @@ class EffectC : public ObjC
 {
 public:
 	virtual void PlayPos(double x, double y);
+	virtual EffectC* Clone() = 0;
+
 
 	bool Init() override;
 	bool Frame() override;

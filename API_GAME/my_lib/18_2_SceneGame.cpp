@@ -56,7 +56,7 @@ bool	SceneGame::Init()
 	DeadEffect->Load(L"../z_INPUT/data/50x50/explosion01.bmp");
 	DeadEffect->Set(0, 0, 0, 0, 150, 150);
 	
-	I_EffectMgr.Load(DeadEffect);
+	I_EffectMgr.RegisterEffect(DeadEffect->Clone(), 0, 1);
 
 	return true;
 }
@@ -169,7 +169,7 @@ bool	SceneGame::Frame()
 
 		for (int kObj = 0; kObj < g_MaxRock; kObj++) {
 			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_Rock1_List[kObj].getRtCls())) {
-				//shot1It->setExist(false);
+				shot1It->setExist(false);
 			}
 		}
 
@@ -205,7 +205,7 @@ bool	SceneGame::Render()
 	if (!m_Effect_pos.empty()) {
 		double x = m_Effect_pos.front().x;
 		double y = m_Effect_pos.front().y;
-		I_EffectMgr.Play(0, x, y);
+		I_EffectMgr.Play(0, x-32, y-32);
 
 		m_Effect_pos.pop_front();
 	}

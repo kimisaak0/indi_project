@@ -11,6 +11,11 @@ SpriteDead1C::SpriteDead1C()
 
 }
 
+EffectC* SpriteDead1C::Clone()
+{
+	return new SpriteDead1C(*this);
+}
+
 bool SpriteDead1C::Frame()
 {
 	if (m_bExist) {

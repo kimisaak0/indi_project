@@ -4,6 +4,7 @@
 bool MapObjC::Render()
 {
 	if (m_bExist) {
+
 		TransparentBlt(g_hOffScreenDC,
 			m_ptPosition.x, m_ptPosition.y,
 			m_rtDraw.right, m_rtDraw.bottom,

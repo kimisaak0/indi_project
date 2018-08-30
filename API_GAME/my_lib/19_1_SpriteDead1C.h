@@ -8,9 +8,11 @@ protected:
 	double m_dSpriteSpeed;
 
 public:
+	EffectC * Clone() override;
+
 	bool Frame() override;
 	bool Render() override;
-
+	
 
 public:
 	SpriteDead1C();

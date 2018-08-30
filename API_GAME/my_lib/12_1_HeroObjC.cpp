@@ -68,6 +68,22 @@ bool HeroObjC::Frame()
 			}
 		}
 
+		list<shot1C>::iterator shot1It;
+
+		for (shot1It = shot1_list.begin(); shot1It != shot1_list.end(); shot1It++) {
+			shot1It->Frame();			
+		}
+
+		//총알 삭제하기
+		for (shot1It = shot1_list.begin(); shot1It != shot1_list.end(); ) {
+			if (!shot1It->getExist()) {
+				shot1It = shot1_list.erase(shot1It);
+			}
+			else {
+				shot1It++;
+			}
+		}
+
 
 		//소나를 킵니다.
 		if (I_Input.Key('R') == KEY_DOWN) {
@@ -81,11 +97,6 @@ bool HeroObjC::Frame()
 		}
 		
 
-		list<shot1C>::iterator shot1It;
-
-		for (shot1It = shot1_list.begin(); shot1It != shot1_list.end(); shot1It++) {
-			shot1It->Frame();
-		}
 
 
 		//노 젓는 스프라이트
