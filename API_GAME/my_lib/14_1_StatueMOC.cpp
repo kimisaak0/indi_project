@@ -3,7 +3,7 @@
 
 StatueMOC::StatueMOC()
 {
-	m_iMaxHp = 10000;
+	m_iMaxHp = 1000;
 	m_iCurrentHP = m_iMaxHp;
 }
 
@@ -48,8 +48,11 @@ bool StatueMOC::Render()
 		HBRUSH myBrush = (HBRUSH)GetStockObject(DC_BRUSH);
 		HBRUSH oldBrush = (HBRUSH)SelectObject(g_hOffScreenDC, myBrush);
 
-		SetDCBrushColor(g_hOffScreenDC, RGB(255,0,0));
 
+		SetDCBrushColor(g_hOffScreenDC, RGB(0, 0, 0));
+		Rectangle(g_hOffScreenDC, m_ptPosition.x, m_ptPosition.y - 7, m_ptPosition.x + 100, m_ptPosition.y - 2);
+
+		SetDCBrushColor(g_hOffScreenDC, RGB(255,0,0));
 		Rectangle(g_hOffScreenDC, m_ptPosition.x, m_ptPosition.y-7, m_ptPosition.x+(m_iCurrentHP*100/m_iMaxHp), m_ptPosition.y - 2);
 
 		SelectObject(g_hOffScreenDC, oldBrush);

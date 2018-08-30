@@ -120,6 +120,9 @@
     <ClInclude Include="01_header.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="15_2_ShotLaserC.h">
+      <Filter>CollisionObjC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="02_WndC.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="22_EffectMgrC.cpp">
       <Filter>Mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="15_2_ShotLaserC.cpp">
+      <Filter>CollisionObjC</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

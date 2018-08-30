@@ -20,7 +20,7 @@ MobAC::MobAC()
 
 	m_iId = g_maxId++;
 
-	m_iMaxHp = 1000;
+	m_iMaxHp = 100;
 	m_iCurrentHP = m_iMaxHp;
 
 	m_iFSMid = 0;
@@ -91,8 +91,6 @@ bool MobAC::Frame()
 					m_dSpeedY = rand() % 30 + 15;
 				}
 
-				m_ptPosition.x += m_dDirX * m_dSpeedX * g_dSecPerFrame;
-				m_ptPosition.y += m_dDirY * m_dSpeedY * g_dSecPerFrame;
 			}; break; 
 
 			case 1: { //패턴 1 (추적)
@@ -105,9 +103,6 @@ bool MobAC::Frame()
 
 				m_dDirX = (dx > 0) ? +1 : -1;
 				m_dDirY = (dy > 0) ? +1 : -1;
-
-				m_ptPosition.x += m_dDirX * m_dSpeedX * g_dSecPerFrame * 100;
-				m_ptPosition.y += m_dDirY * m_dSpeedY * g_dSecPerFrame * 100;
 				
 				if (abs(dx) < 0.1 && abs(dy) < 0.1) {
 					m_iFSMid = 0;
@@ -115,6 +110,10 @@ bool MobAC::Frame()
 
 			} break;
 		}
+
+		//이동
+		m_ptPosition.x += m_dDirX * m_dSpeedX * g_dSecPerFrame;
+		m_ptPosition.y += m_dDirY * m_dSpeedY * g_dSecPerFrame;
 
 		if (m_dDirX == 1) {
 			if (m_dDirY == 1) {
@@ -132,6 +131,8 @@ bool MobAC::Frame()
 				m_dSpeedX <= m_dSpeedY ? m_rtDraw.top = 32 : m_rtDraw.top = 96;
 			}
 		}
+
+
 
 		//화면 밖으로 나가지마!
 		if (m_rtCollision.right > g_rtClient.right)
@@ -154,7 +155,6 @@ bool MobAC::Frame()
 			m_dDirY *= -1.0f;
 			m_ptPosition.y = g_rtClient.top;
 		}
-
 
 		//맵 오브젝트랑 부딪혔다! 밀어내기 
 		if (m_bMapCls) {
@@ -218,8 +218,10 @@ bool MobAC::Render()
 		HBRUSH myBrush = (HBRUSH)GetStockObject(DC_BRUSH);
 		HBRUSH oldBrush = (HBRUSH)SelectObject(g_hOffScreenDC, myBrush);
 
-		SetDCBrushColor(g_hOffScreenDC, RGB(255, 0, 0));
+		SetDCBrushColor(g_hOffScreenDC, RGB(0, 0, 0));
+		Rectangle(g_hOffScreenDC, m_ptPosition.x, m_ptPosition.y - 7, m_ptPosition.x + 100 * 0.3, m_ptPosition.y - 2);
 
+		SetDCBrushColor(g_hOffScreenDC, RGB(255, 0, 0));
 		Rectangle(g_hOffScreenDC, m_ptPosition.x, m_ptPosition.y - 7, m_ptPosition.x + (m_iCurrentHP * 100 / m_iMaxHp) * 0.3, m_ptPosition.y - 2);
 
 		SelectObject(g_hOffScreenDC, oldBrush);

@@ -8,6 +8,8 @@ HeroObjC::HeroObjC()
 
 	m_dSpeedX = 0;
 	m_dSpeedY = 0;
+
+	m_iShotNum = 0;
 }
 
 //총알 생성
@@ -30,13 +32,25 @@ void HeroObjC::addShort1(POINT mousePos)
 	shot1_list.push_back(shot);
 }
 
-//void HeroObjC::makeSona()
-//{
-//	sonaC sona;
-//
-//
-//
-//}
+void HeroObjC::addLaserShort(POINT mousePos)
+{
+	ShotLaserC shot;
+	shot.Init();
+	shot.Load(L"../z_INPUT/data/50x50/M484BulletCollection1.bmp");
+	shot.Set(m_ptPosition.x, m_ptPosition.y, 438, 85, 13, 49);
+	shot.setSpawn(m_ptPosition.x, m_ptPosition.y);
+
+	double dx = mousePos.x - m_ptPosition.x;
+	double dy = mousePos.y - m_ptPosition.y;
+	double distance = sqrt(pow(dx, 2) + pow(dy, 2));
+
+	shot.setSpeed(dx / distance, dy / distance);
+
+	I_SoundMgr.PlayEffect(1);
+
+	shotLaser_list.push_back(shot);
+}
+
 
 bool HeroObjC::Init()
 {
@@ -60,19 +74,39 @@ bool HeroObjC::Frame()
 {
 	if (m_bExist) {
 		//총을 쏩니다!
-		if (I_Input.Key('Q')) {
-			m_dShotDelay += g_dSecPerFrame;
-			if (m_dShotDelay >= 0.1) {
-				addShort1(I_Input.m_MousePos);
-				m_dShotDelay -= 0.1;
+		if (I_Input.Key(VK_RBUTTON)) {
+			switch (m_iShotNum) {
+				case 0: {
+					m_dShotDelay += g_dSecPerFrame;
+					if (m_dShotDelay >= 0.1) {
+						addShort1(I_Input.m_MousePos);
+						m_dShotDelay -= 0.1;
+					}
+				} break;
+
+				case 1: {
+					m_dShotDelay += g_dSecPerFrame;
+					if (m_dShotDelay >= 0.1) {
+						addLaserShort(I_Input.m_MousePos);
+						m_dShotDelay -= 0.1;
+					}
+				} break;
 			}
 		}
 
+		//총알 프레임
 		list<shot1C>::iterator shot1It;
 
 		for (shot1It = shot1_list.begin(); shot1It != shot1_list.end(); shot1It++) {
 			shot1It->Frame();			
 		}
+
+		list<ShotLaserC>::iterator ShotLaserIt;
+
+		for (ShotLaserIt = shotLaser_list.begin(); ShotLaserIt != shotLaser_list.end(); ShotLaserIt++) {
+			ShotLaserIt->Frame();
+		}
+
 
 		//총알 삭제하기
 		for (shot1It = shot1_list.begin(); shot1It != shot1_list.end(); ) {
@@ -268,6 +302,13 @@ bool HeroObjC::Render()
 		for (shot1It = shot1_list.begin(); shot1It != shot1_list.end(); shot1It++) {
 			shot1It->Render();
 		}
+
+		list<ShotLaserC>::iterator ShotLaserIt;
+
+		for (ShotLaserIt = shotLaser_list.begin(); ShotLaserIt != shotLaser_list.end(); ShotLaserIt++) {
+			ShotLaserIt->Render();
+		}
+
 
 		//소나 그리기
 		if (m_bSonaSw) {
