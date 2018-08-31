@@ -44,6 +44,7 @@ void	ShotLaserC::RotateBlt(float fAngle, HBITMAP hBitmap,
 	xform.eM21 = dSine;	xform.eM22 = dCosine;
 	xform.eDx = m_dMaxDistance / 2;
 	xform.eDy = m_dMaxDistance / 2;
+
 	SetWorldTransform(m_hRotationDC, &xform);
 
 	BitBlt(m_hRotationDC,
@@ -56,15 +57,27 @@ void	ShotLaserC::RotateBlt(float fAngle, HBITMAP hBitmap,
 		m_rtDraw.top,
 		SRCCOPY);
 
+	BitBlt(pSrcBitmap->m_hMemDC,
+		m_rtDraw.left, m_rtDraw.top,
+		m_rtDraw.right, m_rtDraw.bottom,
+		m_hRotationDC,
+		m_rtDraw.left,
+		m_rtDraw.top,
+		SRCCOPY);
+
+
+	//되돌려놓는 부분
 	SelectObject(m_hRotationDC, hOldBitmap);
 	SelectObject(m_hRotationDC, hOldBrush);
-
 	xform.eM11 = 1; xform.eM12 = 0;
 	xform.eM21 = 0;	xform.eM22 = 1;
 	xform.eDx = 0;
 	xform.eDy = 0;
+
 	SetWorldTransform(m_hRotationDC, &xform);
 	SetGraphicsMode(m_hRotationDC, iOldGraphic);
+
+	
 
 	DeleteObject(hbrBack);
 }
@@ -96,7 +109,7 @@ bool ShotLaserC::Render()
 	TransparentBlt(g_hOffScreenDC,
 		m_ptPosition.x, m_ptPosition.y,
 		m_rtDraw.right, m_rtDraw.bottom,
-		m_hRotationDC,
+		m_pColorBmp->m_hMemDC,
 		m_rtDraw.left, m_rtDraw.top,
 		m_rtDraw.right, m_rtDraw.bottom,
 		RGB(0, 0, 0)
