@@ -9,7 +9,7 @@ HeroObjC::HeroObjC()
 	m_dSpeedX = 0;
 	m_dSpeedY = 0;
 
-	m_iShotNum = 0;
+	m_iShotNum = 1;
 }
 
 //ÃÑ¾Ë »ý¼º

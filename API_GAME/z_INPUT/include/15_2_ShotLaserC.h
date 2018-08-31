@@ -11,7 +11,17 @@ protected:
 
 	dPointC m_ptSpawnPos;
 
+	double m_dMaxDistance;
+
+	HDC      m_hResultDC;
+
+	HDC		  m_hRotationDC;
+	HBITMAP   m_hRoateionBMP;
+
+
 public:
+	void RotateBlt(float fAngle, HBITMAP hBitmap, BmpC* pSrcBitmap);
+
 	void setSpeed(double sx, double sy);
 	void setSpawn(double sx, double sy);
 
@@ -19,4 +29,5 @@ public:
 	bool Render() override;
 
 	dPointC getSpawn();
+
 };
