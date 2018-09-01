@@ -107,7 +107,7 @@ bool	SceneGame::Frame()
 		//주인공이랑 부딪히면 주인공이 다이
 		if (I_ClsMgr.RectInRect(MobAIt->getRtCls(), m_Hero.getRtCls())) {
 			MobAIt->setFSM(0); //FSM은 0으로
-			if (g_dGameTimer > 10000000) {
+			if (g_dGameTimer > 5) {
 				m_Hero.setExist(false);
 				m_bNextScene = true;
 			}
@@ -164,6 +164,9 @@ bool	SceneGame::Frame()
 			if (I_ClsMgr.RectInRect(shot1It->getRtCls(), m_statue.getRtCls())) {
 				shot1It->setExist(false);
 				m_statue.Hit();
+				if (!m_statue.getExist()) {
+					m_bNextScene = true;
+				}
 			}
 		}
 
