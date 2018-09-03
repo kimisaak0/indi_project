@@ -20,7 +20,7 @@ MobAC::MobAC()
 
 	m_iId = g_maxId++;
 
-	m_iMaxHp = 100;
+	m_iMaxHp = 10;
 	m_iCurrentHP = m_iMaxHp;
 
 	m_iFSMid = 0;
