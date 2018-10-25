@@ -25,8 +25,6 @@ bool	SceneOverC::Init()
 	m_btnContinue.Load(L"../z_INPUT/data/50x50/ContinueBtn.bmp");
 	m_btnContinue.Set(1000, 900, 0, 0, 334, 82);
 
-	
-
 	return true;
 }
 
@@ -59,7 +57,6 @@ bool	SceneOverC::Frame()
 	else {
 		m_btnContinue.Set(g_rtClient.right - 600, g_rtClient.bottom - 100, 0, 0, 334, 82);
 	}
-
 
 	return true;
 }

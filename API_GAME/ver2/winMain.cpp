@@ -52,6 +52,7 @@ bool    GameC::Frame()	 // 계산
 	switch (m_pScene->getSceneID()) {
 		case 0: {
 			if (m_pScene->getNextScene()) {
+				m_pScene->Release();
 				m_pScene = m_pGame;
 				m_pScene->Init();
 			}
@@ -59,6 +60,7 @@ bool    GameC::Frame()	 // 계산
 
 		case 1: {
 			if (m_pScene->getNextScene()) {
+				m_pScene->Release();
 				m_pScene = m_pOver;
 				m_pScene->Init();
 				I_SoundMgr.Stop(3);
@@ -68,10 +70,12 @@ bool    GameC::Frame()	 // 계산
 		case 2: {
 			if (m_pScene->getNextScene()) {
 				if (m_pScene->getNextSceneID() == 0) {
+					m_pScene->Release();
 					m_pScene = m_pLobby;
 					m_pScene->Init();
 				}
 				if (m_pScene->getNextSceneID() == 1) {
+					m_pScene->Release();
 					m_pScene = m_pGame;
 					m_pScene->Init();
 				}
